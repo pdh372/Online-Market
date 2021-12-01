@@ -1,8 +1,9 @@
 import React from 'react';
+import './homePage.scss';
 
 class HomePage extends React.Component {
 	render () {
-		return <div>home page</div>;
+		return <div className='huy'>1</div>;
 	}
 }
 

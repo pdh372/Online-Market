@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 // pages
 import HomePage from './homePage/HomePage';
 import NotFound from './notFound/NotFound';
-import PrivateRoute from './PriateRoute';
+// import PrivateRoute from './PriateRoute';
 // scss
 import '../scss/_index.scss';
 
@@ -12,14 +12,7 @@ function App () {
 		<div className='app'>
 			{/* Start Router */}
 			<Routes>
-				<Route
-					path='/'
-					element={
-						<PrivateRoute>
-							<HomePage />
-						</PrivateRoute>
-					}
-				/>
+				<Route path='/' element={<HomePage />} />
 
 				{/* <Route path='/auth/*' element={<AuthPage />} /> */}
 
