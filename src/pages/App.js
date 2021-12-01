@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 // pages
 import HomePage from './homePage/HomePage';
 import NotFound from './notFound/NotFound';
+import StatisticalPage from './statisticalPage/StatisticalPage';
 // import PrivateRoute from './PriateRoute';
 // scss
 import '../scss/_index.scss';
@@ -17,6 +18,8 @@ function App () {
 				{/* <Route path='/auth/*' element={<AuthPage />} /> */}
 
 				<Route path='/404' element={<NotFound />} />
+
+				<Route path='/statistical/*' element={<StatisticalPage />} />
 
 				<Route path='*' element={<Navigate to='/404' />} />
 			</Routes>
