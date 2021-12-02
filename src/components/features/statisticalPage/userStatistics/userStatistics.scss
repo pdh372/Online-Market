@@ -5,24 +5,20 @@
 	flex-direction: $fd;
 }
 
-.user-statistics {
-	@include flex(center, center, column);
+.user-statistics-tabs {
+	@include flex();
+	margin: 40px 0px;
 
-	&-tabs {
-		@include flex();
-		margin: 40px 0px;
-
-		div {
-			padding: 5px 10px;
-			background-color: lightgray;
-			margin: 0 20px;
-			cursor: pointer;
-		}
+	div {
+		padding: 5px 10px;
+		background-color: lightgray;
+		margin: 0 20px;
+		cursor: pointer;
 	}
+}
 
-	&-chart {
-		.usc {
-			min-width: 500px;
-		}
+.user-statistics-chart {
+	.usc {
+		min-width: 500px;
 	}
 }

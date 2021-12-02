@@ -1,5 +1,5 @@
 import ContainerPage from '../../components/shared/containerPage/ContainerPage';
-import UserStatistics from '../../components/features/statisticalPage/userStatistics/UserStatistics';
+import StatisticsComponent from '../../components/features/statisticalPage/index';
 import './statisticalPage.scss';
 
 const StatisticalPage = () => {
@@ -7,7 +7,7 @@ const StatisticalPage = () => {
 		<ContainerPage>
 			<main className='statistic-page'>
 				<section className='statistic-chart'>
-					<UserStatistics />
+					<StatisticsComponent />
 				</section>
 			</main>
 		</ContainerPage>

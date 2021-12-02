@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import 'chart.piecelabel.js';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Pie } from 'react-chartjs-2';
@@ -35,7 +34,7 @@ const dataShipper = {
 	labels   : [ 'Vùng Xanh', 'Vùng Vàng', 'Vùng Cam', 'Vùng Đỏ' ],
 	datasets : [
 		{
-			data            : [ 576, 3456, 34, 234 ],
+			data            : [ 576, 345, 123, 234 ],
 			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
 			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
 			borderWidth     : 1,
@@ -60,11 +59,8 @@ const option = {
 		},
 		datalabels : {
 			formatter : (value, ctx) => {
-				let sum = 0;
 				let dataArr = ctx.chart.data.datasets[0].data;
-				dataArr.map(data => {
-					sum += data;
-				});
+				let sum = dataArr.reduce((result, data) => result + data);
 				let percentage = (value * 100 / sum).toFixed(2) + '%';
 				return percentage;
 			},
@@ -74,17 +70,7 @@ const option = {
 };
 
 const UserStatistics = () => {
-	const [ data, setData ] = useState({
-		labels   : [],
-		datasets : [
-			{
-				data            : [],
-				backgroundColor : [],
-				borderColor     : [],
-				borderWidth     : 1,
-			},
-		],
-	});
+	const [ data, setData ] = useState(dataSeller);
 
 	const handleClickRole = role => {
 		if (role === 'seller') {
@@ -99,17 +85,17 @@ const UserStatistics = () => {
 	};
 
 	return (
-		<section className='user-statistics'>
+		<React.Fragment>
 			<article className='user-statistics-tabs'>
-				<div onClick={() => handleClickRole('seller')}>Nguoi mua</div>
-				<div onClick={() => handleClickRole('buyer')}>Nguoi Ban</div>
+				<div onClick={() => handleClickRole('buyer')}>Nguoi mua</div>
+				<div onClick={() => handleClickRole('seller')}>Nguoi Ban</div>
 				<div onClick={() => handleClickRole('shipper')}>Shipper</div>
 			</article>
 
 			<article className='user-statistics-chart'>
 				<Pie data={data} className='usc' options={option} />
 			</article>
-		</section>
+		</React.Fragment>
 	);
 };
 
