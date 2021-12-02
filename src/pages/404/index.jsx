@@ -10,6 +10,9 @@ class HomePage extends React.Component {
 					<ul>
 						<Link to='statistical'>statistical</Link>
 					</ul>
+					<ul>
+						<Link to='delivery-history'>delivery-history</Link>
+					</ul>
 				</li>
 			</div>
 		);

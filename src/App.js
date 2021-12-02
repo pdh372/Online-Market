@@ -1,12 +1,14 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 // pages
-import HomePage from './homePage/HomePage';
-import NotFound from './notFound/NotFound';
-import StatisticalPage from './statisticalPage/StatisticalPage';
+import HomePage from './pages/index';
+import NotFound from './pages/index';
+import DeliveryHistory from './pages/delivery-history';
+import OrderTracking from './pages/order-tracking/index';
+import StatisticalPage from './pages/statistical';
 // import PrivateRoute from './PriateRoute';
 // scss
-import '../scss/_index.scss';
+import './scss/_index.scss';
 
 function App () {
 	return (
@@ -14,12 +16,10 @@ function App () {
 			{/* Start Router */}
 			<Routes>
 				<Route path='/' element={<HomePage />} />
-
-				{/* <Route path='/auth/*' element={<AuthPage />} /> */}
-
 				<Route path='/404' element={<NotFound />} />
-
 				<Route path='/statistical/*' element={<StatisticalPage />} />
+				<Route path='/order-tracking' element={<OrderTracking />} />
+				<Route path='/delivery-history' element={<DeliveryHistory />} />
 
 				<Route path='*' element={<Navigate to='/404' />} />
 			</Routes>
