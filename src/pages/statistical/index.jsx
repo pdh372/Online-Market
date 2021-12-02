@@ -1,5 +1,5 @@
 import ContainerPage from '../../components/shared/containerPage/ContainerPage';
-import StatisticsComponent from '../../components/features/statisticalPage/index';
+import StatisticsComponent from '../../components/features/statistical/index';
 import './statisticalPage.scss';
 
 const StatisticalPage = () => {
