@@ -1,0 +1,19 @@
+@mixin flex($jc :center, $ai : center, $fd : row) {
+	display: flex;
+	justify-content: $jc;
+	align-items: $ai;
+	flex-direction: $fd;
+}
+
+.statistics {
+	@include flex();
+
+	.statistics__type {
+		.statistics__type-item {
+			padding: 5px 10px;
+			margin: 10px 0;
+			background-color: lightgray;
+			cursor: pointer;
+		}
+	}
+}
