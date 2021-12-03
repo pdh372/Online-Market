@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 // pages
+import AuthPage from './authPage/AuthPage'
 import HomePage from './homePage/HomePage';
 import NotFound from './notFound/NotFound';
 // import PrivateRoute from './PriateRoute';
@@ -17,6 +18,8 @@ function App () {
 				{/* <Route path='/auth/*' element={<AuthPage />} /> */}
 
 				<Route path='/404' element={<NotFound />} />
+
+				<Route path='/auth/:name' element={<AuthPage />} />
 
 				<Route path='*' element={<Navigate to='/404' />} />
 			</Routes>
