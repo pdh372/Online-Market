@@ -16,6 +16,9 @@ class HomePage extends React.Component {
 					<ul>
 						<Link to='order-tracking'>order tracking</Link>
 					</ul>
+					<ul>
+						<Link to='auth/login'>login</Link>
+					</ul>
 				</li>
 			</div>
 		);
