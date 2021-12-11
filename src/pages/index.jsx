@@ -5,7 +5,7 @@ import './homePage.scss';
 class HomePage extends React.Component {
 	render () {
 		return (
-			<div className='huy'>
+			<div className='xxx'>
 				<li>
 					<ul>
 						<Link to='statistical'>statistical</Link>
@@ -18,6 +18,9 @@ class HomePage extends React.Component {
 					</ul>
 					<ul>
 						<Link to='auth/login'>login</Link>
+					</ul>
+					<ul>
+						<Link to='order-management'>order-management</Link>
 					</ul>
 				</li>
 			</div>
