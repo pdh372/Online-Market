@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import statisticalApi from '../../../../apis/statistic/index';
+import { formatUserToStatistic } from '../../../../helpers/formatUserToStatistic';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Pie } from 'react-chartjs-2';
@@ -42,6 +44,18 @@ const dataShipper = {
 	],
 };
 
+const dataStatistic = {
+	labels   : [],
+	datasets : [
+		{
+			data            : [],
+			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
+			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
+			borderWidth     : 1,
+		},
+	],
+};
+
 const option = {
 	plugins : {
 		tooltip    : {
@@ -77,11 +91,25 @@ const UserStatistics = () => {
 			setData(dataSeller);
 		}
 		else if (role === 'buyer') {
+			fetchData(role);
 			setData(dataBuyer);
 		}
 		else if (role === 'shipper') {
 			setData(dataShipper);
 		}
+	};
+
+	const fetchData = async type => {
+		const dataFromBe = await statisticalApi.get.user(type);
+
+		const result = formatUserToStatistic(dataFromBe);
+
+		dataStatistic.labels = result.labels;
+		dataStatistic.datasets[0].data = result.data;
+
+		console.log(dataStatistic);
+
+		setData(dataStatistic);
 	};
 
 	return (
