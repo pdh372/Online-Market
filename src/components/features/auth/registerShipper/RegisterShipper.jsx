@@ -1,30 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { Form, Input, Button } from 'antd';
 const layout = {
-	labelCol: {
-		span: 8,
+	labelCol   : {
+		span : 8,
 	},
-	wrapperCol: {
-		span: 16,
+	wrapperCol : {
+		span : 16,
 	},
 };
 /* eslint-disable no-template-curly-in-string */
 
 const validateMessages = {
-	required: '${label} is required!',
-	types: {
-		email: '${label} is not a valid email!',
-		number: '${label} is not a valid number!',
+	required : '${label} is required!',
+	types    : {
+		email  : '${label} is not a valid email!',
+		number : '${label} is not a valid number!',
 	},
-	number: {
-		range: '${label} must be between ${min} and ${max}',
+	number   : {
+		range : '${label} must be between ${min} and ${max}',
 	},
 };
 /* eslint-enable no-template-curly-in-string */
 
-const RegisterProvider = () => {
+const RegisterShipper = () => {
 	const onFinish = values => {
 		console.log(values);
 	};
@@ -40,121 +39,116 @@ const RegisterProvider = () => {
 				<h1 justify-content='center'>ĐĂNG KÝ TÀI KHOẢN</h1>
 			</Form.Item>
 			<Form.Item>
-				<p>Điền các thông tin sau đây để đăng ký tài khoản nhà cung cấp</p>
-				<p>
-					<Link to='/auth/login'>Đăng nhập |</Link>
-					<Link to='/auth/registercustomer'> Đăng ký khách hàng |</Link>
-					<Link to='/auth/registershipper'> Đăng ký đối tác giao hàng</Link>
-				</p>
+				<p>Điền các thông tin sau đây để đăng ký tài khoản người giao hàng</p>
 			</Form.Item>
 			<Form.Item
-				name={['user', 'name']}
+				name={[ 'user', 'name' ]}
 				label='Họ và tên'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'id']}
+				name={[ 'user', 'id' ]}
 				label='CCCD/CMND'
 				rules={[
 					{
-						type: 'string',
-						required: true,
+						type     : 'string',
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'phone']}
+				name={[ 'user', 'phone' ]}
 				label='Số điện thoại'
 				rules={[
 					{
-						type: 'string',
-						required: true,
+						type     : 'string',
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'email']}
+				name={[ 'user', 'email' ]}
 				label='Email'
 				rules={[
 					{
-						type: 'email',
-						required: true,
+						type     : 'email',
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'city']}
+				name={[ 'user', 'city' ]}
 				label='Thành phố'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'districy']}
+				name={[ 'user', 'districy' ]}
 				label='Quận'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'ward']}
+				name={[ 'user', 'ward' ]}
 				label='Phường'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'street']}
+				name={[ 'user', 'street' ]}
 				label='Số nhà, Đường'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 'pass']}
+				name={[ 'user', 'pass' ]}
 				label='Mật khẩu'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
 				<Input />
 			</Form.Item>
 			<Form.Item
-				name={['user', 're-pass']}
+				name={[ 'user', 're-pass' ]}
 				label='Xác nhận mật khẩu'
 				rules={[
 					{
-						required: true,
+						required : true,
 					},
 				]}
 			>
@@ -169,4 +163,4 @@ const RegisterProvider = () => {
 	);
 };
 
-export default RegisterProvider;
+export default RegisterShipper;

@@ -5,6 +5,7 @@ import Login from '../../components/features/auth/login/Login';
 import ForgetPassword from '../../components/features/auth/forgetPassword/ForgetPassword';
 import RegisterCustomer from '../../components/features/auth/registerCustomer/RegisterCustomer';
 import RegisterProvider from '../../components/features/auth/registerProvider/RegisterProvider';
+import RegisterShipper from '../../components/features/auth/registerShipper/RegisterShipper';
 
 const AuthPage = () =>{
     const params = useParams();
@@ -13,16 +14,19 @@ const AuthPage = () =>{
 
     const handleRouter = () =>{ 
         if(params.name === 'login'){
-            return <Login />
+            return <Login/>
         }
         else if(params.name === 'forgetpassword'){
-            return <ForgetPassword />
+            return <ForgetPassword/>
         }
         else if(params.name === 'registercustomer'){
-            return <RegisterCustomer />
+            return <RegisterCustomer/>
         }
         else if(params.name === 'registerprovider'){
-            return <RegisterProvider />
+            return <RegisterProvider/>
+        }
+        else if(params.name === 'registershipper'){
+            return <RegisterShipper/>
         }
         else {
             return <Navigate to='404'/>

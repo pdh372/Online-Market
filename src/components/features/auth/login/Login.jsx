@@ -19,7 +19,7 @@ const Login = () => {
                     span: 8,
                 }}
                 wrapperCol={{
-                    span: 24,
+                    span: 8,
                 }}
                 initialValues={{
                     remember: true,
@@ -28,14 +28,7 @@ const Login = () => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
-                <Form.Item
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <h1 justify-content='center'>ĐĂNG NHẬP</h1>
-                </Form.Item>
+                <h1><center>ĐĂNG NHẬP</center></h1>
                 <Form.Item
                     label="Email"
                     name="email"
@@ -66,7 +59,7 @@ const Login = () => {
                     name="remember"
                     valuePropName="checked"
                     wrapperCol={{
-                        offset: 8,
+                        offset: 10,
                         span: 16,
                     }}
                 >
