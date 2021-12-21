@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Upload, Select, DatePicker } from 'antd';
+import { Form, Input, Button, Upload, DatePicker } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import Post from '../../../../apis/user/post';
 
-const { Option } = Select;
 const layout = {
 	labelCol: {
 		span: 8,
@@ -46,42 +44,7 @@ const validateMessages = {
 
 const RegisterProvider = () => {
 	const onFinish = values => {
-		const dataForm = {
-			User: {
-				Name: values.user.name,
-				CINumber: values.user.id,
-				Email: values.user.email,
-				DoB: values.user.dob.format('DD-MM-YYYY'),
-				PhoneNumber: values.user.phone,
-				Password: values.pass,
-				Address:
-				{
-					City: values.user.city,
-					District: values.user.district,
-					Ward: values.user.ward,
-					Street: values.user.street,
-					Number: values.user.number
-				}
-     	  	},
-			Store:{
-				name: values.provider.name,
-				type: values.provider.type,
-				Address:
-				{
-					City: values.user.city,
-					District: values.user.district,
-					Ward: values.user.ward,
-					Street: values.user.street,
-					Number: values.user.number
-				}
-			}
-		}
-
-		Post.registerProvider(dataForm).then(res => {
-            console.log(dataForm);
-			console.log(res);
-            alert(res);
-        });
+		console.log(values);
 	};
 
 	return (
@@ -91,44 +54,16 @@ const RegisterProvider = () => {
 			onFinish={onFinish}
 			validateMessages={validateMessages}
 		>
-			<h1><center>ĐĂNG KÝ TÀI KHOẢN NHÀ CUNG CẤP</center></h1>
+			<h1><center>ĐĂNG KÝ TÀI KHOẢN NGƯỜI GIAO HÀNG</center></h1>
 			<p><center>
 				<Link to='/auth/login'>Đăng nhập |</Link>
 				<Link to='/auth/registercustomer'> Đăng ký khách hàng |</Link>
-				<Link to='/auth/registershipper'> Đăng ký đối tác giao hàng</Link>
+				<Link to='/auth/registerprovider'> Đăng ký đối tác cung cấp</Link>
 			</center></p>
-			<h3><center>Điền các thông tin sau đây để đăng ký tài khoản nhà cung cấp</center></h3>
-			<Form.Item
-				name={['provider', 'name']}
-				label='Tên đơn vị'
-				rules={[
-					{
-						required: true,
-					},
-				]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				name={['provider', 'type']}
-				label="Hình thức"
-				rules={[
-					{
-						required: true,
-					},
-				]}
-			>
-				<Select
-					placeholder="Chọn hình thức tài khoản"
-					allowClear
-				>
-					<Option value="Kinh doanh">Kinh doanh</Option>
-					<Option value="Từ thiện">Từ thiện</Option>
-				</Select>
-			</Form.Item>
+			<h3><center>Điền các thông tin sau đây để đăng ký tài khoản người giao hàng</center></h3>
 			<Form.Item
 				name={['user', 'name']}
-				label='Họ tên người đại diện'
+				label='Họ tên'
 				rules={[
 					{
 						required: true,
@@ -157,7 +92,7 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<DatePicker format={'DD/MM/YYYY'}/>
+				<DatePicker />
 			</Form.Item>
 			<Form.Item
 				name={['user', 'phone']}
@@ -183,7 +118,7 @@ const RegisterProvider = () => {
 			>
 				<Input />
 			</Form.Item>
-			<h3><center>Ảnh CMND/CCCD người đại diện</center></h3>
+			<h3><center>Ảnh CMND/CCCD</center></h3>
 			<Form.Item
 				name="upload"
 				label="Mặt trước"
@@ -201,7 +136,7 @@ const RegisterProvider = () => {
 				</Upload>
 			</Form.Item>
 			<Form.Item
-				name="upload"
+				name="upload1"
 				label="Mặt sau"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
@@ -216,7 +151,7 @@ const RegisterProvider = () => {
 					<Button icon={<UploadOutlined />}>Click to upload</Button>
 				</Upload>
 			</Form.Item>
-			<h3><center>Địa chỉ đơn vị cung cấp</center></h3>
+			<h3><center>Thông tin địa chỉ</center></h3>
 			<Form.Item
 				name={['user', 'city']}
 				label='Thành phố'
@@ -272,20 +207,36 @@ const RegisterProvider = () => {
 			>
 				<Input />
 			</Form.Item>
-			<h3><center>Giấy phép hoạt động kinh doanh/từ thiện</center></h3>
+			<h3><center>Giấy phép lái xe A1/A2</center></h3>
 			<Form.Item
-				name="upload"
-				label="Ảnh/File giấy phép"
+				name="upload2"
+				label="Ảnh GPLX mặt trước"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
-				extra="Ảnh hoặc file PDF"
+				extra="Mặt trước"
 				rules={[
 					{
 						required: true,
 					},
 				]}
 			>
-				<Upload name="license" action="/upload.do" listType="pdf">
+				<Upload name="license1" action="/upload.do" listType="pdf">
+					<Button icon={<UploadOutlined />}>Click to upload</Button>
+				</Upload>
+			</Form.Item>
+			<Form.Item
+				name="upload2"
+				label="Ảnh GPLX mặt sau"
+				valuePropName="fileList"
+				getValueFromEvent={normFile}
+				extra="Mặt sau"
+				rules={[
+					{
+						required: true,
+					},
+				]}
+			>
+				<Upload name="license2" action="/upload.do" listType="pdf">
 					<Button icon={<UploadOutlined />}>Click to upload</Button>
 				</Upload>
 			</Form.Item>

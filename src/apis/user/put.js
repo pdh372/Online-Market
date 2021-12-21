@@ -1,8 +1,8 @@
-import rootApi from '../root';
+import axiosDotNet from '../rootDotNet';
 
 class Put {
 	email = ({ userData, token }) => {
-		return rootApi.put('/users/email', userData, {
+		return axiosDotNet.put('/users/email', userData, {
 			headers : {
 				'x-auth-token' : token,
 			},
@@ -10,7 +10,7 @@ class Put {
 	};
 
 	verifyChangeEmail = ({ token }) => {
-		return rootApi.put('/users/verify-change-email', null, {
+		return axiosDotNet.put('/users/verify-change-email', null, {
 			headers : {
 				'x-auth-token' : token,
 			},
@@ -18,7 +18,7 @@ class Put {
 	};
 
 	password = ({ token, newPassword, currentPassword }) => {
-		return rootApi.put(
+		return axiosDotNet.put(
 			'/users/password',
 			{ newPassword, currentPassword },
 			{
@@ -27,6 +27,14 @@ class Put {
 				},
 			},
 		);
+	};
+
+	forgetPassword = data => {
+		return axiosDotNet.put('/User/ForgetPassword', data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
 	};
 }
 

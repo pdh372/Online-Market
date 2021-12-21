@@ -1,10 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
+import Post from '../../../../apis/user/post';
 
 const Login = () => {
     const onFinish = (values) => {
-        console.log('Success:', values);
+        const dataForm = {
+            Email: values.email,
+            Password: values.password
+        }
+        console.log(dataForm);
+        Post.loginUser(dataForm).then(res => {
+            console.log(res);
+            alert(res);
+        });
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -19,7 +28,7 @@ const Login = () => {
                     span: 8,
                 }}
                 wrapperCol={{
-                    span: 24,
+                    span: 8,
                 }}
                 initialValues={{
                     remember: true,
@@ -28,14 +37,7 @@ const Login = () => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
-                <Form.Item
-                    wrapperCol={{
-                        offset: 8,
-                        span: 16,
-                    }}
-                >
-                    <h1 justify-content='center'>ĐĂNG NHẬP</h1>
-                </Form.Item>
+                <h1><center>ĐĂNG NHẬP</center></h1>
                 <Form.Item
                     label="Email"
                     name="email"
@@ -66,7 +68,7 @@ const Login = () => {
                     name="remember"
                     valuePropName="checked"
                     wrapperCol={{
-                        offset: 8,
+                        offset: 10,
                         span: 16,
                     }}
                 >
@@ -86,7 +88,7 @@ const Login = () => {
                     </p>
                     <p>Bạn chưa có tài khoản?
                         <p>
-                            <Link to='/auth/registercustomer'>Đăng ký ngay |</Link>
+                            <Link to='/auth/registercustomer'>Đăng ký khách hàng |</Link>
                             <Link to='/auth/registerprovider'> Đăng ký đối tác cung cấp |</Link>
                             <Link to='/auth/registershipper'> Đăng ký đối tác giao hàng</Link>
                         </p>
