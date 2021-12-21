@@ -1,4 +1,5 @@
 import rootApi from '../root';
+//import axiosClient from '../root';
 
 class Put {
 	email = ({ userData, token }) => {
@@ -27,6 +28,14 @@ class Put {
 				},
 			},
 		);
+	};
+
+	forgetPassword = (data) => {
+		return rootApi.put('/User/ForgetPassword', data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
 	};
 }
 

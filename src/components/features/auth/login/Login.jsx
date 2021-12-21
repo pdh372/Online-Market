@@ -1,10 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
+import Post from '../../../../apis/user/post';
 
 const Login = () => {
     const onFinish = (values) => {
-        console.log('Success:', values);
+        const dataForm = {
+            Email: values.email,
+            Password: values.password
+        }
+        console.log(dataForm);
+        Post.loginUser(dataForm).then(res => {
+            console.log(res);
+            alert(res);
+        });
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -79,7 +88,7 @@ const Login = () => {
                     </p>
                     <p>Bạn chưa có tài khoản?
                         <p>
-                            <Link to='/auth/registercustomer'>Đăng ký ngay |</Link>
+                            <Link to='/auth/registercustomer'>Đăng ký khách hàng |</Link>
                             <Link to='/auth/registerprovider'> Đăng ký đối tác cung cấp |</Link>
                             <Link to='/auth/registershipper'> Đăng ký đối tác giao hàng</Link>
                         </p>

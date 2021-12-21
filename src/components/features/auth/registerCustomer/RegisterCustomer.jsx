@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
-import Post from '../../../../apis/user/post'
+import { Form, Input, Button, DatePicker } from 'antd';
+import Post from '../../../../apis/user/post';
 const layout = {
     labelCol: {
         span: 8,
@@ -33,7 +33,7 @@ const RegisterCustomer = () => {
             Name: values.user.name,
             CINumber: values.user.id,
             Email: values.user.email,
-            DoB: values.user.dob,
+            DoB: values.user.dob.format('DD-MM-YYYY'),
             PhoneNumber: values.user.phone,
             Password: values.pass,
             Address:
@@ -45,8 +45,9 @@ const RegisterCustomer = () => {
                 Number: values.user.number
             }
         }
-
-        Post.registerCustomer(dataForm).then(res => {
+        
+        Post.registerCustomer(dataForm).then(res => {           
+            console.log(dataForm);
             console.log(res);
             alert(res);
         });
@@ -54,13 +55,13 @@ const RegisterCustomer = () => {
 
     return (
         <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
-                <h1><center>ĐĂNG KÝ TÀI KHOẢN</center></h1>
-                <p><center>
-					<Link to='/auth/login'>Đăng nhập |</Link>
-					<Link to='/auth/registercustomer'> Đăng ký khách hàng |</Link>
-					<Link to='/auth/registershipper'> Đăng ký đối tác giao hàng</Link>
-                    </center></p>
-                <p><center>Điền các thông tin sau đây để đăng ký tài khoản khách hàng</center></p>
+            <h1><center>ĐĂNG KÝ TÀI KHOẢN</center></h1>
+            <p><center>
+                <Link to='/auth/login'>Đăng nhập |</Link>
+                <Link to='/auth/registerprovider'> Đăng ký nhà cung cấp |</Link>
+                <Link to='/auth/registershipper'> Đăng ký đối tác giao hàng</Link>
+            </center></p>
+            <h3><center>Điền các thông tin sau đây để đăng ký tài khoản khách hàng</center></h3>
             <Form.Item
                 name={['user', 'name']}
                 label="Họ và tên"
@@ -90,12 +91,10 @@ const RegisterCustomer = () => {
                 label="Ngày sinh"
                 rules={[
                     {
-                        type: 'date',
                         required: true,
                     },
-                ]}
-            >
-                <Input />
+                ]}>
+                <DatePicker />
             </Form.Item>
             <Form.Item
                 name={['user', 'phone']}
@@ -120,6 +119,7 @@ const RegisterCustomer = () => {
             >
                 <Input />
             </Form.Item>
+            <h3><center>Thông tin địa chỉ giao hàng</center></h3>
             <Form.Item
                 name={['user', 'city']}
                 label="Thành phố"
@@ -175,7 +175,7 @@ const RegisterCustomer = () => {
             >
                 <Input />
             </Form.Item>
-
+            <h3><center>Thiết lập mật khẩu</center></h3>
             <Form.Item
                 name={['pass']}
                 label="Mật khẩu"
@@ -214,7 +214,7 @@ const RegisterCustomer = () => {
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>
                 <Button type="primary" htmlType="submit">
-                Đăng ký
+                    Đăng ký
                 </Button>
             </Form.Item>
         </Form>
