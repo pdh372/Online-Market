@@ -38,7 +38,7 @@ class Put {
 	};
 
 	user = (data) => {
-		return axiosDotNet.put('/User/put', data, {
+		return axiosDotNet.put('/User/put/' + data.User.ObjectId, data, {
 			headers : {
 				'x-auth-token' : 'token',
 			},
