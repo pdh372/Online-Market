@@ -1,12 +1,15 @@
 import React from 'react';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 
 const ContainerPage = ({ children }) => {
 	return (
 		<React.Fragment>
-			{/* <Header /> */}
+			<Header />
 
 			{children}
-			{/* <Footer /> */}
+
+			<Footer />
 		</React.Fragment>
 	);
 };
