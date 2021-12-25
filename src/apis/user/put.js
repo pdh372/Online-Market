@@ -36,6 +36,14 @@ class Put {
 			},
 		});
 	};
+
+	user = (data) => {
+		return axiosDotNet.put('/User/put', data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
+	};
 }
 
 export default new Put();

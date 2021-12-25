@@ -22,6 +22,9 @@ class HomePage extends React.Component {
 					<ul>
 						<Link to='order-management'>order-management</Link>
 					</ul>
+					<ul>
+						<Link to='edit-profile'>edit-profile</Link>
+					</ul>
 				</li>
 			</div>
 		);

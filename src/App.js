@@ -7,6 +7,7 @@ import NotFound from './pages/not-found';
 import OrderManagement from './pages/order-management';
 import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
+import EditProfile from './pages/profile/index';
 import HomePage from './pages/index';
 // import PrivateRoute from './PriateRoute';
 // scss
@@ -23,6 +24,7 @@ function App () {
 				<Route path='/order-management' element={<OrderManagement />} />
 				<Route path='/order-tracking' element={<OrderTracking />} />
 				<Route path='/statistical/*' element={<StatisticalPage />} />
+				<Route path='/edit-profile' element={<EditProfile />} />
 				<Route path='/' element={<HomePage />} />
 
 				<Route path='*' element={<Navigate to='/not-found' />} />

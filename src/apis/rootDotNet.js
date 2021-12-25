@@ -3,7 +3,7 @@ import axios from 'axios';
 // import queryString from 'query-string';
 
 const axiosClient = axios.create({
-	baseURL : 'http://localhost:18745/api',
+	baseURL : 'https://localhost:44358/api',
 	headers : {
 		'content-type' : 'application/json',
 	},
