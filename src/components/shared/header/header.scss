@@ -1,0 +1,50 @@
+header {
+	display: grid;
+	grid-template-columns: 1fr 4fr 10fr 1fr;
+
+	height: 55px;
+	background-color: gray;
+
+	align-items: center;
+
+	.header__logo {
+		margin-left: 20px;
+
+		> * {
+			cursor: pointer;
+			padding: 7px 10px;
+			background-color: white;
+
+			font-size: 21px;
+			font-weight: bold;
+		}
+	}
+
+	.header__search {
+		min-width: 300px;
+		margin-left: 20px;
+		height: 40px;
+
+		input {
+			height: 100%;
+			border-radius: 8px;
+			width: 100%;
+			padding: 0px 20px;
+		}
+	}
+
+	.header__router {
+		display: flex;
+		align-items: center;
+
+		.rotuer-item {
+			margin-left: 100px;
+
+			p {
+				font-weight: bold;
+				font-size: 20px;
+				cursor: pointer;
+			}
+		}
+	}
+}

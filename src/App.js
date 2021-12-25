@@ -10,6 +10,7 @@ import StatisticalPage from './pages/statistical';
 import HomePage from './pages/index';
 // import PrivateRoute from './PriateRoute';
 // scss
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import './scss/_index.scss';
 
 function App () {
