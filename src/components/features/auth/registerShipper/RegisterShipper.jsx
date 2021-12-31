@@ -1,7 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Upload, DatePicker } from 'antd';
+import { Form, Input, Button, Upload, DatePicker, Cascader } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import Post from '../../../../apis/user/post';
+
+const residences = [
+    {
+        value: 'TP Hồ Chí Minh',
+        label: 'TP Hồ Chí Minh',
+        children: [
+            {
+                value: 'Quận 1',
+                label: 'Quận 1',
+                children: [
+                    {
+                        value: 'Phường Bến Nghé',
+                        label: 'Phường Bến Nghé',
+                    },
+                    {
+                        value: 'Phường Bến Thành',
+                        label: 'Phường Bến Thành',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 2',
+                label: 'Quận 2',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 3',
+                label: 'Quận 3',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 4',
+                label: 'Quận 4',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 5',
+                label: 'Quận 5',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+        ],
+    },
+];
+
 
 const layout = {
 	labelCol: {
@@ -44,7 +109,33 @@ const validateMessages = {
 
 const RegisterProvider = () => {
 	const onFinish = values => {
-		console.log(values);
+		const dataForm = {
+			user: {
+				name: values.user.name,
+				ciNum: values.user.id,
+				email: values.user.email,
+				dob: values.user.dob.format('DD-MM-YYYY'),
+				phoneNumber: values.user.phone,
+				password: values.pass,
+				address:
+                {
+                    streetNo: values.user.number + ' ' + values.user.street,
+                }
+			},
+			area:{
+				city: values.user.residence[0],
+				district: values.user.residence[1],
+				ward: values.user.residence[2],		
+			},
+			shipper:{
+				status: "absent",
+			}
+		}
+		console.log(dataForm);
+		Post.registerShipper(dataForm).then(res => {           
+			console.log(res);
+            alert(res);
+        });
 	};
 
 	return (
@@ -136,7 +227,7 @@ const RegisterProvider = () => {
 				</Upload>
 			</Form.Item>
 			<Form.Item
-				name="upload1"
+				name="upload"
 				label="Mặt sau"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
@@ -153,37 +244,17 @@ const RegisterProvider = () => {
 			</Form.Item>
 			<h3><center>Thông tin địa chỉ</center></h3>
 			<Form.Item
-				name={['user', 'city']}
-				label='Thành phố'
+				name={['user', 'residence']}
+				label="Địa chỉ"
 				rules={[
 					{
+						type: 'array',
 						required: true,
+						message: 'Please select your habitual residence!',
 					},
 				]}
 			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				name={['user', 'district']}
-				label='Quận'
-				rules={[
-					{
-						required: true,
-					},
-				]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				name={['user', 'ward']}
-				label='Phường'
-				rules={[
-					{
-						required: true,
-					},
-				]}
-			>
-				<Input />
+				<Cascader options={residences} />
 			</Form.Item>
 			<Form.Item
 				name={['user', 'street']}
@@ -209,7 +280,7 @@ const RegisterProvider = () => {
 			</Form.Item>
 			<h3><center>Giấy phép lái xe A1/A2</center></h3>
 			<Form.Item
-				name="upload2"
+				name="upload"
 				label="Ảnh GPLX mặt trước"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
@@ -225,7 +296,7 @@ const RegisterProvider = () => {
 				</Upload>
 			</Form.Item>
 			<Form.Item
-				name="upload2"
+				name="upload"
 				label="Ảnh GPLX mặt sau"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}

@@ -1,4 +1,5 @@
 import axiosDotNet from '../rootDotNet';
+import axiosJava from '../rootJava'
 
 class Post {
 	registerCustomer = data => {
@@ -11,6 +12,14 @@ class Post {
 
 	registerProvider = data => {
 		return axiosDotNet.post('/Store/RegisterProvider', data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
+	};
+
+	registerShipper = data => {
+		return axiosJava.post('/Shipper/RegisterShipper', data, {
 			headers : {
 				'x-auth-token' : 'token',
 			},

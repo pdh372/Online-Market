@@ -1,7 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, DatePicker } from 'antd';
+import { Form, Input, Button, DatePicker, Cascader } from 'antd';
 import Post from '../../../../apis/user/post';
+//import { useState } from 'react';
+
+//const { Option } = Select;
+const residences = [
+    {
+        value: 'TP Hồ Chí Minh',
+        label: 'TP Hồ Chí Minh',
+        children: [
+            {
+                value: 'Quận 1',
+                label: 'Quận 1',
+                children: [
+                    {
+                        value: 'Phường Bến Nghé',
+                        label: 'Phường Bến Nghé',
+                    },
+                    {
+                        value: 'Phường Bến Thành',
+                        label: 'Phường Bến Thành',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 2',
+                label: 'Quận 2',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 3',
+                label: 'Quận 3',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 4',
+                label: 'Quận 4',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+            {
+                value: 'Quận 5',
+                label: 'Quận 5',
+                children: [
+                    {
+                        value: 'Phường',
+                        label: 'Phường',
+                    },
+                ],
+            },
+        ],
+    },
+];
 const layout = {
     labelCol: {
         span: 8,
@@ -30,24 +95,27 @@ const validateMessages = {
 const RegisterCustomer = () => {
     const onFinish = (values) => {
         const dataForm = {
-            Name: values.user.name,
-            CINumber: values.user.id,
-            Email: values.user.email,
-            DoB: values.user.dob.format('DD-MM-YYYY'),
-            PhoneNumber: values.user.phone,
-            Password: values.pass,
-            Address:
+            User: {
+                Name: values.user.name,
+                CINum: values.user.id,
+                Email: values.user.email,
+                DoB: values.user.dob.format('DD-MM-YYYY'),
+                PhoneNumber: values.user.phone,
+                Password: values.pass,
+                Address:
+                {
+                    StreetNo: values.user.number + ' ' + values.user.street,
+                }
+            },
+            Area:
             {
-                City: values.user.city,
-                District: values.user.district,
-                Ward: values.user.ward,
-                Street: values.user.street,
-                Number: values.user.number
+                City: values.user.residence[0],
+                District: values.user.residence[1],
+                Ward: values.user.residence[2],
             }
         }
-        
-        Post.registerCustomer(dataForm).then(res => {           
-            console.log(dataForm);
+        console.log(dataForm);
+        Post.registerCustomer(dataForm).then(res => {
             console.log(res);
             alert(res);
         });
@@ -121,37 +189,17 @@ const RegisterCustomer = () => {
             </Form.Item>
             <h3><center>Thông tin địa chỉ giao hàng</center></h3>
             <Form.Item
-                name={['user', 'city']}
-                label="Thành phố"
+                name={['user', 'residence']}
+                label="Địa chỉ"
                 rules={[
                     {
+                        type: 'array',
                         required: true,
+                        message: 'Please select your habitual residence!',
                     },
                 ]}
             >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                name={['user', 'district']}
-                label="Quận"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                name={['user', 'ward']}
-                label="Phường"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}
-            >
-                <Input />
+                <Cascader options={residences} />
             </Form.Item>
             <Form.Item
                 name={['user', 'street']}
