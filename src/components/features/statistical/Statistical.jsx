@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './index.scss';
+import './statistical.scss';
 import ProductStatistics from './productStatistics/ProductStatistics';
 import UserStatistics from './userStatistics/UserStatistics';
 

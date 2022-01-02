@@ -1,5 +1,5 @@
 import ContainerPage from '../../components/shared/containerPage/ContainerPage';
-import OrderTrackingComponent from '../../components/features/orderTracking/index';
+import OrderTrackingComponent from '../../components/features/orderTracking/OrderTracking';
 
 const OrderManagement = () => {
 	return (
