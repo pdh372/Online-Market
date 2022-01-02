@@ -7,8 +7,11 @@ class HomePage extends React.Component {
 	render () {
 		return (
 			<ContainerPage>
-				<div className='xxx'>
+				<div>
 					<li>
+						<ul>
+							<Link to='cancel-order'>cancel-order</Link>
+						</ul>
 						<ul>
 							<Link to='statistical'>statistical</Link>
 						</ul>

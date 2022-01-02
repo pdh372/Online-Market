@@ -1,5 +1,5 @@
 import ContainerPage from '../../components/shared/containerPage/ContainerPage';
-import DeliveryHistoryComponent from '../../components/features/deleveryHistory/index';
+import DeliveryHistoryComponent from '../../components/features/deleveryHistory/DeleveryHistory';
 
 const DeliveryHistory = () => {
 	return (

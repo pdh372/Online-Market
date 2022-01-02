@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 
 // pages
 import AuthPage from './pages/auth';
+import CancelOrder from './pages/cancel-order';
 import DeliveryHistory from './pages/delivery-history';
 import NotFound from './pages/not-found';
 import OrderManagement from './pages/order-management';
@@ -19,6 +20,7 @@ function App () {
 			{/* Start Router */}
 			<Routes>
 				<Route path='/auth/:name' element={<AuthPage />} />
+				<Route path='/cancel-order' element={<CancelOrder />} />
 				<Route path='/delivery-history' element={<DeliveryHistory />} />
 				<Route path='/not-found' element={<NotFound />} />
 				<Route path='/order-management' element={<OrderManagement />} />

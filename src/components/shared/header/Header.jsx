@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineLogin } from 'react-icons/ai';
-import { DropDownStyled, MenuStyled } from './header.styled';
+import { DropDownStyled, MenuStyled } from '../../elements/dropdown/header/header.styled';
 import { Menu } from 'antd';
 import './header.scss';
 
@@ -9,10 +9,10 @@ const Header = () => {
 	const menuRef = useRef(
 		<MenuStyled className='menu'>
 			<Menu.Item className='menu-item'>
-				<Link to='auth/login'>Đăng Nhập</Link>
+				<Link to='/auth/login'>Đăng Nhập</Link>
 			</Menu.Item>
 			<Menu.Item className='menu-item'>
-				<Link to='registercustomer'>Đăng Kí</Link>
+				<Link to='/auth/registercustomer'>Đăng Kí</Link>
 			</Menu.Item>
 		</MenuStyled>,
 	);

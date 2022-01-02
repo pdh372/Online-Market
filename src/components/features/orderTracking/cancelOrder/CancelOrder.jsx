@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // table
-import DataTable from 'react-data-table-component';
-import TableUserStyled from './index.styled';
 import DeleteAction from './action/delete';
-import PutAction from './action/put';
-import data from './fakedata';
-import formatDateMongoose from '../../../helpers/formatDateMongoose';
-import formatCurrency from '../../../helpers/formatCurrency';
+import formatDateMongoose from 'helpers/formatDateMongoose';
+import formatCurrency from 'helpers/formatCurrency';
+import Table from 'components/elements/table/index';
+import orderApi from 'apis/order';
 
-const columns = [
+const CancelOrder = ({ currentStatus }) => {
+	const [ data, setData ] = useState([]);
+
+	useEffect(
+		() => {
+			const fetchData = async () => {
+				const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
+				
+				setData(orders);
+			};
+
+			fetchData();
+		},
+		[ currentStatus ],
+	);
+
+	return <Table columns={columns} data={data} />;
+};
+
+export default CancelOrder;
+
+export const columns = [
 	{
 		name     : 'Name',
 		selector : row => row.customer,
@@ -41,7 +60,7 @@ const columns = [
 	},
 	{
 		name     : 'status',
-		selector : row => row.status,
+		selector : row => row.currentStatus,
 		sortable : true,
 		center   : true,
 	},
@@ -59,20 +78,9 @@ const columns = [
 		cell     : row => {
 			return (
 				<div style={{ display: 'flex' }}>
-					<PutAction />
 					<DeleteAction />
 				</div>
 			);
 		},
 	},
 ];
-
-const OrderManagementComponent = () => {
-	return (
-		<TableUserStyled>
-			<DataTable columns={columns} data={data} />
-		</TableUserStyled>
-	);
-};
-
-export default OrderManagementComponent;
