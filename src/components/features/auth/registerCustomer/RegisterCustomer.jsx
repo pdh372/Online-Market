@@ -162,7 +162,7 @@ const RegisterCustomer = () => {
                         required: true,
                     },
                 ]}>
-                <DatePicker />
+                <DatePicker format={'DD/MM/YYYY'}/>
             </Form.Item>
             <Form.Item
                 name={['user', 'phone']}
