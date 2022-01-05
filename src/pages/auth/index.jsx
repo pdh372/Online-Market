@@ -34,7 +34,7 @@ const AuthPage = () => {
 
 	return (
 		<ContainerPage>
-			<div className='auth-page'>{handleRouter()}</div>
+			<main className='auth-page'>{handleRouter()}</main>
 		</ContainerPage>
 	);
 };
