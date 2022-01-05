@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 // table
-import DeleteAction from './action/delete';
 import formatDateMongoose from 'helpers/formatDateMongoose';
 import formatCurrency from 'helpers/formatCurrency';
 import Table from 'components/elements/table/index';
@@ -13,7 +12,7 @@ const CancelOrder = ({ currentStatus }) => {
 		() => {
 			const fetchData = async () => {
 				const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
-				
+
 				setData(orders);
 			};
 
@@ -36,7 +35,7 @@ export const columns = [
 	},
 	{
 		name     : 'orderDate',
-		selector : row => formatDateMongoose(row.orderDate),
+		selector : row => row.orderDate,
 		sortable : true,
 		center   : true,
 	},
@@ -70,17 +69,17 @@ export const columns = [
 		sortable : true,
 		center   : true,
 	},
-	{
-		name     : 'action',
-		selector : row => row.customer,
-		sortable : true,
-		center   : true,
-		cell     : row => {
-			return (
-				<div style={{ display: 'flex' }}>
-					<DeleteAction />
-				</div>
-			);
-		},
-	},
+	// {
+	// 	name     : 'action',
+	// 	selector : row => row.customer,
+	// 	sortable : true,
+	// 	center   : true,
+	// 	cell     : row => {
+	// 		return (
+	// 			<div style={{ display: 'flex' }}>
+	// 				<DeleteAction />
+	// 			</div>
+	// 		);
+	// 	},
+	// },
 ];

@@ -6,7 +6,9 @@
 }
 
 .statistics {
-	@include flex();
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+	gap: 100px;
 
 	.statistics__type {
 		.statistics__type-item {
