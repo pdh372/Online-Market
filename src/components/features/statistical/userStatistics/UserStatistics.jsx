@@ -20,18 +20,6 @@ const dataSeller = {
 	],
 };
 
-const dataBuyer = {
-	labels   : [ 'Vùng Xanh', 'Vùng Vàng', 'Vùng Cam', 'Vùng Đỏ' ],
-	datasets : [
-		{
-			data            : [ 12, 32, 34, 45 ],
-			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
-			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
-			borderWidth     : 1,
-		},
-	],
-};
-
 const dataShipper = {
 	labels   : [ 'Vùng Xanh', 'Vùng Vàng', 'Vùng Cam', 'Vùng Đỏ' ],
 	datasets : [
@@ -92,7 +80,6 @@ const UserStatistics = () => {
 		}
 		else if (role === 'buyer') {
 			fetchData(role);
-			setData(dataBuyer);
 		}
 		else if (role === 'shipper') {
 			setData(dataShipper);
@@ -106,8 +93,6 @@ const UserStatistics = () => {
 
 		dataStatistic.labels = result.labels;
 		dataStatistic.datasets[0].data = result.data;
-
-		console.log(dataStatistic);
 
 		setData(dataStatistic);
 	};

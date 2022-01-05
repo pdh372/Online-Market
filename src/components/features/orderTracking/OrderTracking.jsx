@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CancelOrder from './cancelOrder/CancelOrder';
+import OrderByStatus from './orderByStatus/OrderByStatus';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 
@@ -18,25 +19,20 @@ const OrderTrackingComponent = () => {
 					<p>Tất Cả Đơn Hàng</p>
 					<p>Tất Cả Đơn Hàng</p>
 				</TabPane>
-				<TabPane tab='Chờ Xác Nhận' key='comfirming'>
-					<p>Đơn Hàng Đang Chờ Người Bán Xác Nhận</p>
-					<p>Đơn Hàng Đang Chờ Người Bán Xác Nhận</p>
-					<p>Đơn Hàng Đang Chờ Người Bán Xác Nhận</p>
+				<TabPane tab='Chờ Xác Nhận' key='confirming'>
+					{currentTab === 'confirming' && <OrderByStatus currentStatus={currentTab} />}
+				</TabPane>
+				<TabPane tab='Chờ Xác Nhận' key='preparing'>
+					{currentTab === 'preparing' && <OrderByStatus currentStatus={currentTab} />}
 				</TabPane>
 				<TabPane tab='Chờ Lấy Hàng' key='waiting-shipper'>
-					<p>Đơn Hàng Đang Chờ Shipper Lấy</p>
-					<p>Đơn Hàng Đang Chờ Shipper Lấy</p>
-					<p>Đơn Hàng Đang Chờ Shipper Lấy</p>
+					{currentTab === 'waiting-shipper' && <OrderByStatus currentStatus={currentTab} canDelete />}
 				</TabPane>
 				<TabPane tab='Đang Giao' key='delivering'>
-					<p>Đơn Hàng Đang Giao</p>
-					<p>Đơn Hàng Đang Giao</p>
-					<p>Đơn Hàng Đang Giao</p>
+					{currentTab === 'delivering' && <OrderByStatus currentStatus={currentTab} canDelete />}
 				</TabPane>
 				<TabPane tab='Đã Giao' key='paid'>
-					<p>Đơn Hàng Đã Giao</p>
-					<p>Đơn Hàng Đã Giao</p>
-					<p>Đơn Hàng Đã Giao</p>
+					{currentTab === 'paid' && <OrderByStatus currentStatus={currentTab} canDelete />}
 				</TabPane>
 				<TabPane tab='Đã Hủy' key='canceled'>
 					{currentTab === 'canceled' && <CancelOrder currentStatus={currentTab} />}
