@@ -1,6 +1,7 @@
 import React from "react";
 import productsData from "./productsData";
 import { Link } from "react-router-dom";
+import { Pagination } from 'antd';
 
 const Products = () => {
   const products = productsData.map(product => {
@@ -19,8 +20,12 @@ const Products = () => {
     <>
       <h1>Products Page</h1>
       {products}
+      <Pagination defaultCurrent={1} total={50} />
     </>
   );
 };
+
+
+
 
 export default Products;
