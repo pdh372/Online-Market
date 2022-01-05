@@ -10,6 +10,9 @@ class HomePage extends React.Component {
 				<div>
 					<li>
 						<ul>
+							<Link to='products'>products</Link>
+						</ul>
+						<ul>
 							<Link to='cancel-order'>cancel-order</Link>
 						</ul>
 						<ul>

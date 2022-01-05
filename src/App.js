@@ -9,6 +9,7 @@ import OrderManagement from './pages/order-management';
 import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
 import HomePage from './pages/index';
+import ProductsPage from './pages/products'
 // import PrivateRoute from './PriateRoute';
 // scss
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
@@ -27,6 +28,7 @@ function App () {
 				<Route path='/order-tracking' element={<OrderTracking />} />
 				<Route path='/statistical/*' element={<StatisticalPage />} />
 				<Route path='/' element={<HomePage />} />
+				<Route path='/products/*' element={<ProductsPage />} />
 
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
