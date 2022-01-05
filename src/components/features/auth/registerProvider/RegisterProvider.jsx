@@ -367,6 +367,7 @@ const RegisterProvider = () => {
 					Đăng ký
 				</Button>
 			</Form.Item>
+
 		</Form>
 	);
 };

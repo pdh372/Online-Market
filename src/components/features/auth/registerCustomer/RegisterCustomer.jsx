@@ -261,10 +261,10 @@ const RegisterCustomer = () => {
                 <Input.Password />
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>
-                <Button type="primary" htmlType="submit">
-                    Đăng ký
-                </Button>
-            </Form.Item>
+				<Button type='primary' htmlType='submit'>
+					Đăng ký
+				</Button>
+			</Form.Item>
         </Form>
     );
 };
