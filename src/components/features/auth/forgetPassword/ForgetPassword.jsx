@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, DatePicker } from 'antd';
-import Put from '../../../../apis/user/put';
+import apiUser from 'apis/user';
 const layout = {
     labelCol: {
         span: 8,
@@ -30,15 +30,15 @@ const validateMessages = {
 const RegisterCustomer = () => {
     const onFinish = (values) => {
         const dataForm = {
-            Name: values.user.name,
-            CINumber: values.user.id,
-            Email: values.user.email,
-            DoB: values.user.dob.format('DD-MM-YYYY'),
-            PhoneNumber: values.user.phone,
-            Password: values.pass,
+            name: values.user.name,
+            ciNum: values.user.id,
+            email: values.user.email,
+            dob: values.user.dob.format('DD-MM-YYYY'),
+            phoneNumber: values.user.phone,
+            password: values.pass,
         }
         console.log(dataForm);
-        Put.forgetPassword(dataForm).then(res => {
+        apiUser.put.forgetPassword(dataForm).then(res => {
             console.log(res);
             alert(res);
         });
@@ -86,7 +86,7 @@ const RegisterCustomer = () => {
                         required: true,
                     },
                 ]}>
-                <DatePicker />
+                <DatePicker format={'DD/MM/YYYY'}/>
             </Form.Item>
             <Form.Item
                 name={['user', 'phone']}

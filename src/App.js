@@ -10,7 +10,8 @@ import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
 import HomePage from './pages/index';
 import ProductsPage from './pages/products'
-import ProductDetail from './components/features/productDetail/ProductDetail'
+//import ProductDetail from './components/features/productDetail/ProductDetail'
+import ProductDetail from './pages/product-detail'
 
 // import PrivateRoute from './PriateRoute';
 // scss

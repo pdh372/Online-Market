@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Upload, Select, DatePicker, Cascader } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import Post from '../../../../apis/user/post';
+import apiUser from 'apis/user';
 
 const residences = [
     {
@@ -134,7 +134,7 @@ const RegisterProvider = () => {
 			}
 		}
 		console.log(dataForm);
-		Post.registerProvider(dataForm).then(res => {           
+		apiUser.post.registerProvider(dataForm).then(res => {           
 			console.log(res);
             alert(res);
         });

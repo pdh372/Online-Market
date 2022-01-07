@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, DatePicker, Cascader } from 'antd';
-import Post from '../../../../apis/user/post';
+import apiUser from 'apis/user';
 //import { useState } from 'react';
 
 //const { Option } = Select;
@@ -115,7 +115,7 @@ const RegisterCustomer = () => {
             }
         }
         console.log(dataForm);
-        Post.registerCustomer(dataForm).then(res => {
+        apiUser.post.registerCustomer(dataForm).then(res => {
             console.log(res);
             alert(res);
         });

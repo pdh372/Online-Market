@@ -1,0 +1,27 @@
+.product { 
+    border: 2px solid rgb(109, 172, 255); 
+    //min-height: 200px;
+    //background-color: #b5ecfd;
+    display: inline-flex;
+    height: 415px; 
+    width: 800px;
+    margin-top: 50px;
+    margin-left: 300px;
+    padding: 25px;
+    border-radius: 20px;
+} 
+
+.info { 
+    margin: 10px; 
+    background-color: #ffffff;
+    height: 350px; 
+    width: 400px; 
+    //display: inline-block
+    //line-height: 30px;
+} 
+
+.avt img {
+    border: 1px solid rgb(109, 172, 255);
+    margin: 10px;
+    border-radius: 15px;
+}
