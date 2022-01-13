@@ -1,0 +1,120 @@
+.page-send-email {
+	height: 663px;
+	width: 100%;
+	@include flex(center, center);
+	background-color: #f8f8fb;
+
+	.send-email__container {
+		@include flex(flex-start, center, column);
+		background: #fff;
+		box-shadow: 5px 5px 20px #0000000A;
+		border-radius: 10px;
+
+		width: 600px;
+		height: 490px;
+
+		.send-email__logo {
+			margin-top: 6rem;
+			width: 84px;
+			height: 80px;
+			img {
+				height: 100%;
+				width: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.send-email__title {
+			margin-top: 2rem;
+
+			> * {
+				// font-family: Segoe UI;
+				color: #111859;
+				font-size: 28px;
+				font-weight: bold;
+				margin: 0;
+			}
+		}
+
+		.send-email__p {
+			margin-top: 4rem;
+			width: 395px;
+
+			> * {
+				text-align: center;
+				// font-family: Segoe UI;
+				color: #111859;
+				font-size: 16px;
+				margin: 0;
+			}
+		}
+
+		.send-email__grid {
+			width: 400px;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 1fr;
+			gap: 1.5rem;
+			margin-top: 3rem;
+
+			&-input {
+				grid-column: 1 / 3;
+				input {
+					width: 100%;
+					height: 50px;
+					border: 1px solid #828282;
+					border-radius: 5px;
+					text-align: center;
+
+					// font-family: Segoe UI;
+					color: #111859;
+					font-size: 16px;
+					font-weight: bold;
+
+					&::placeholder,
+					&::-ms-input-placeholder,
+					&::-moz-placeholder,
+					&::-webkit-input-placeholder {
+						// font-family: Segoe UI;
+						color: #9a9a9a;
+						font-size: 14px;
+					}
+				}
+				.error {
+					color: red;
+					// font-family: Segoe UI;
+					font-size: 14px;
+				}
+			}
+
+			&-send {
+				width: 219px;
+				height: 50px;
+				background: #050c4b 0% 0% no-repeat padding-box;
+				border-radius: 5px;
+
+				@include flex(center, center);
+				cursor: pointer;
+
+				span {
+					// font-family: Segoe UI;
+					color: #ffffff;
+					font-size: 14px;
+					font-weight: bold;
+				}
+			}
+
+			&-login {
+				@include flex(center, center);
+
+				span {
+					cursor: pointer;
+					// font-family: Segoe UI;
+					color: #050c4b;
+					font-size: 14px;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}

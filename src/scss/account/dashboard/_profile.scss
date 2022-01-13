@@ -1,0 +1,670 @@
+.edit-profile {
+	height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr;
+	row-gap: 25px;
+
+	&__explain {
+		width: 100%;
+		height: 26px;
+
+		p {
+			font-family: 'Segoe UI';
+			font-size: 20px;
+			color: #111859;
+		}
+	}
+
+	&__form {
+		width: 100%;
+		height: 100%;
+
+		&-antd {
+			&-input-group {
+				display: grid;
+				grid-template-columns: 1fr;
+				grid-template-rows: 2fr 1fr 3fr;
+				row-gap: 40px;
+
+				.grid__item {
+					&:nth-child(1) {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: 1fr 1fr;
+						column-gap: 50px;
+
+						div {
+							&:nth-child(1) {
+								grid-column-start: 1;
+								grid-column-end: 3;
+							}
+						}
+
+						position: relative;
+						&::after {
+							content: "";
+							position: absolute;
+							width: 100%;
+							height: 1px;
+							background-color: #c0c0c0;
+							bottom: -15px;
+						}
+					}
+
+					&:nth-child(2) {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						column-gap: 50px;
+
+						.edit-profile__form-antd-verify-email {
+							height: 100%;
+							width: 100%;
+							@include flex(center, center);
+
+							div {
+								margin: 0;
+								padding: 0;
+								margin-top: 21px;
+								@include flex(center, center);
+								cursor: pointer;
+								transition: font 0.2s ease;
+							}
+
+							.submit-change {
+								background: #e9ca87 !important;
+								color: #111859 !important;
+								pointer-events: all;
+							}
+						}
+
+						position: relative;
+						&::after {
+							content: "";
+							position: absolute;
+							width: 100%;
+							height: 1px;
+							background-color: #c0c0c0;
+							bottom: -15px;
+						}
+					}
+
+					&:nth-child(3) {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						grid-template-rows: 1fr 1fr 1fr;
+						column-gap: 50px;
+					}
+				}
+
+				.ant-form-item-label {
+					padding-bottom: 14px;
+					label {
+						font-family: 'Segoe UI';
+						font-size: 21px;
+						color: #111859;
+						font-weight: 600;
+					}
+				}
+
+				.ant-form-item-control {
+					width: 100%;
+					height: 50px;
+				}
+
+				.ant-form-item-control-input {
+					width: 100%;
+					height: 100%;
+				}
+
+				.ant-form-item-control-input-content {
+					height: 100%;
+					width: 99%;
+					padding: 0 1px;
+
+					@include flex(center, center, column);
+
+					input {
+						height: 100%;
+						width: 100%;
+						border: none;
+						overflow: none;
+						border-radius: 5px;
+						padding-left: 2rem;
+						background: #ffffff 0% 0% no-repeat padding-box;
+						border: 1px solid #c0c0c0;
+						border-radius: 5px;
+						color: #111859;
+						font-family: Segoe UI, sans-serif;
+						font-size: 18px;
+
+						&::placeholder {
+							font-family: Segoe UI, sans-serif;
+							color: #c0c0c0;
+							font-size: 18px;
+						}
+					}
+				}
+
+				.ant-form-item-explain-error {
+					transition: all 0s ease;
+					div {
+						font-family: 'Segoe UI';
+						font-size: 18px;
+					}
+				}
+
+				.ant-select {
+					height: 100%;
+					.ant-select-selector {
+						height: 100%;
+					}
+				}
+
+				.ant-select-selection-item {
+					// font-family: Segoe UI;
+					color: #111859;
+					font-size: 21px;
+					padding: 1rem;
+					padding-bottom: 0.5rem;
+					text-transform: uppercase;
+				}
+			}
+
+			&-submit {
+				// background: #e9ca87;
+				// color: #111859;
+				background: #dfdfdf;
+				color: #909090;
+				border-radius: 5px;
+				border: none;
+				height: 50px;
+				width: 100%;
+				margin-top: 20px;
+				text-align: center;
+				font-family: 'Segoe UI';
+				font-size: 21px;
+				font-weight: 600;
+				outline: none;
+				transition: font 0.2s ease;
+				pointer-events: none;
+
+				&:active {
+					font-family: 'Segoe UI';
+					font-size: 25px;
+					font-weight: 600;
+				}
+			}
+
+			.submit-change {
+				background: #e9ca87 !important;
+				color: #111859 !important;
+				pointer-events: all;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1366px) {
+	.edit-profile {
+		row-gap: 20px;
+
+		&__explain {
+			height: auto;
+
+			p {
+				font-size: 16px;
+			}
+		}
+
+		&__form {
+			&-antd {
+				&-input-group {
+					.grid__item {
+						&:nth-child(1) {
+							column-gap: 30px;
+						}
+						&:nth-child(2) {
+							column-gap: 30px;
+							.edit-profile__form-antd-verify-email {
+								div {
+									height: 45px;
+									margin-top: 16px;
+								}
+							}
+						}
+						&:nth-child(3) {
+							column-gap: 30px;
+						}
+					}
+
+					.ant-form-item-label {
+						padding-bottom: 14px;
+						label {
+							font-size: 18px;
+						}
+					}
+
+					.ant-form-item-control {
+						width: 100%;
+						height: 45px;
+					}
+
+					.ant-form-item-control-input-content {
+						input {
+							font-size: 16px;
+						}
+					}
+
+					.ant-form-item-explain-error {
+						transition: all 0s ease;
+						div {
+							font-family: 'Segoe UI';
+							font-size: 18px;
+						}
+					}
+
+					.ant-select-selection-item {
+						font-size: 16px;
+						padding: 0 0 0 1rem;
+						@include flex(flex-start, center);
+					}
+					.ant-select-item-option-content {
+						font-size: 15px;
+					}
+				}
+
+				&-submit {
+					height: 40px;
+					margin-top: 20px;
+					font-size: 18px;
+
+					&:active {
+						font-size: 21px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.edit-profile {
+		row-gap: 20px;
+
+		&__explain {
+			height: auto;
+
+			p {
+				font-size: 14px;
+			}
+		}
+
+		&__form {
+			&-antd {
+				&-input-group {
+					.grid__item {
+						&:nth-child(1) {
+							column-gap: 20px;
+						}
+						&:nth-child(2) {
+							column-gap: 20px;
+							.edit-profile__form-antd-verify-email {
+								div {
+									height: 45px;
+									margin-top: 16px;
+									font-size: 14px;
+								}
+							}
+						}
+						&:nth-child(3) {
+							column-gap: 20px;
+						}
+					}
+
+					.ant-form-item-label {
+						padding-bottom: 14px;
+						label {
+							font-size: 16px;
+						}
+					}
+
+					.ant-form-item-control {
+						width: 100%;
+						height: 45px;
+					}
+
+					.ant-form-item-control-input-content {
+						input {
+							font-size: 13px;
+							&::placeholder {
+								font-size: 14px;
+							}
+						}
+					}
+
+					.ant-form-item-explain-error {
+						div {
+							font-size: 14px;
+						}
+					}
+
+					.ant-select-selection-item {
+						font-size: 13px;
+					}
+					.ant-select-item-option-content {
+						font-size: 14px;
+					}
+				}
+
+				&-submit {
+					height: 40px;
+					margin-top: 20px;
+					font-size: 18px;
+
+					&:active {
+						font-size: 21px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.edit-profile {
+		row-gap: 20px;
+
+		&__explain {
+			height: auto;
+
+			p {
+				font-size: 12px;
+			}
+		}
+
+		&__form {
+			&-antd {
+				&-input-group {
+					display: grid;
+					grid-template-columns: 1fr;
+					grid-template-rows: auto auto auto;
+					row-gap: 40px;
+
+					.grid__item {
+						&:nth-child(1) {
+							display: grid;
+							grid-template-columns: 1fr 1fr;
+							grid-template-rows: 1fr 1fr;
+							column-gap: 20px;
+						}
+
+						&:nth-child(2) {
+							display: grid;
+							grid-template-rows: 1fr 80px;
+							grid-template-columns: 1fr;
+
+							.edit-profile__form-antd-verify-email {
+								.edit-profile__form-antd-submit {
+									height: 40px;
+									justify-content: flex-start;
+									font-size: 14px;
+									padding: 2rem;
+									margin-top: 14px;
+								}
+							}
+						}
+
+						&:nth-child(3) {
+							grid-template-columns: 1fr;
+							grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+						}
+
+						.ant-form-item {
+							flex-direction: row;
+						}
+					}
+
+					.ant-form-item-label {
+						padding-bottom: 14px;
+						label {
+							font-size: 15px;
+						}
+					}
+
+					.ant-form-item-control {
+						width: 100%;
+						height: 40px;
+					}
+
+					.ant-form-item-control-input-content {
+						input {
+							font-size: 15px;
+						}
+					}
+
+					.ant-form-item-explain-error {
+						transition: all 0s ease;
+						div {
+							font-family: 'Segoe UI';
+							font-size: 15px;
+						}
+					}
+
+					.ant-select-selection-item {
+						font-size: 15px;
+					}
+				}
+
+				&-submit {
+					height: 40px;
+					margin-top: 20px;
+					font-size: 18px;
+
+					&:active {
+						font-size: 21px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 540px) {
+	.edit-profile {
+		row-gap: 20px;
+
+		&__explain {
+			height: auto;
+
+			p {
+				font-size: 12px;
+			}
+		}
+
+		&__form {
+			&-antd {
+				&-input-group {
+					display: grid;
+					grid-template-columns: 1fr;
+					grid-template-rows: auto auto auto;
+					row-gap: 40px;
+
+					.grid__item {
+						&:nth-child(1) {
+							display: grid;
+							grid-template-columns: 1fr 1fr;
+							grid-template-rows: 1fr 1fr;
+							column-gap: 20px;
+						}
+
+						&:nth-child(2) {
+							display: grid;
+							grid-template-rows: 1fr 80px;
+							grid-template-columns: 1fr;
+
+							.edit-profile__form-antd-verify-email {
+								.edit-profile__form-antd-submit {
+									height: 40px;
+									justify-content: flex-start;
+									font-size: 14px;
+									padding: 2rem;
+								}
+							}
+						}
+
+						&:nth-child(3) {
+							grid-template-columns: 1fr;
+							grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+						}
+
+						.ant-form-item {
+							flex-direction: row;
+						}
+					}
+
+					.ant-form-item-label {
+						padding-bottom: 14px;
+						label {
+							font-size: 15px;
+						}
+					}
+
+					.ant-form-item-control {
+						width: 100%;
+						height: 40px;
+					}
+
+					.ant-form-item-control-input-content {
+						input {
+							font-size: 15px;
+						}
+					}
+
+					.ant-form-item-explain-error {
+						transition: all 0s ease;
+						div {
+							font-family: 'Segoe UI';
+							font-size: 15px;
+						}
+					}
+
+					.ant-select-selection-item {
+						font-size: 15px;
+					}
+				}
+
+				&-submit {
+					height: 40px;
+					margin-top: 20px;
+					font-size: 18px;
+
+					&:active {
+						font-size: 21px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 380px) {
+	.edit-profile {
+		row-gap: 20px;
+
+		&__explain {
+			height: auto;
+
+			p {
+				font-size: 10px;
+			}
+		}
+
+		&__form {
+			&-antd {
+				&-input-group {
+					display: grid;
+					grid-template-columns: 1fr;
+					grid-template-rows: auto auto auto;
+					row-gap: 30px;
+
+					.grid__item {
+						&:nth-child(1) {
+							display: grid;
+							grid-template-columns: 1fr 1fr;
+							grid-template-rows: 1fr 1fr;
+							column-gap: 15px;
+						}
+
+						&:nth-child(2) {
+							display: grid;
+							grid-template-rows: 1fr 70px;
+							grid-template-columns: 1fr;
+
+							.edit-profile__form-antd-verify-email {
+								.edit-profile__form-antd-submit {
+									height: 40px;
+									justify-content: flex-start;
+									font-size: 14px;
+									padding: 2rem;
+								}
+							}
+						}
+
+						&:nth-child(3) {
+							grid-template-columns: 1fr;
+							grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+						}
+
+						.ant-form-item {
+							flex-direction: row;
+						}
+					}
+
+					.ant-form-item-label {
+						padding-bottom: 12px;
+						label {
+							font-size: 15px;
+						}
+					}
+
+					.ant-form-item-control {
+						width: 100%;
+						height: 40px;
+					}
+
+					.ant-form-item-control-input-content {
+						input {
+							font-size: 12px;
+
+							&::placeholder {
+								font-size: 12px;
+							}
+						}
+					}
+
+					.ant-form-item-explain-error {
+						transition: all 0s ease;
+						div {
+							font-family: 'Segoe UI';
+							font-size: 12px;
+						}
+					}
+
+					.ant-select-selection-item {
+						font-size: 12px;
+					}
+				}
+
+				&-submit {
+					height: 40px;
+					margin-top: 20px;
+					font-size: 14px;
+
+					&:active {
+						font-size: 18px;
+					}
+				}
+			}
+		}
+	}
+}
