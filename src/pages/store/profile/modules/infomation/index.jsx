@@ -28,11 +28,11 @@ const Infomation = () => {
 		<section className='dashboard__infomation'>
 			<section className='dashboard__infomation-conainer'>
 				<div className='infomation-title'>
-					<p>Account Information</p>
+					<p>Thông Tin Cửa Hàng</p>
 				</div>
 
 				<div className='infomation-explain'>
-					<p>You can edit profile, change password and manage account settings below:</p>
+					<p>Bạn có thể chỉnh sửa và quản lí tài khoản phía bên dưới:</p>
 				</div>
 
 				<section className='infomation-tabs'>
@@ -41,7 +41,7 @@ const Infomation = () => {
 							className='infomation-tabs-title__item infomation-tabs-title__item-actived'
 							onClick={e => handleChangeTab(0, e)}
 						>
-							<span>Edit Profile</span>
+							<span>Quản lí cửa hàng</span>
 						</div>
 					</div>
 

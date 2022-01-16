@@ -1,21 +1,22 @@
 import React from 'react';
 import { Form, Input } from 'antd';
-import Image from 'components/shared/image/Image';
+import BusinessLicense from './businessLicense';
+import { useState } from 'react';
 const EditProfile = () => {
 	const [ form ] = Form.useForm();
+	const [ avatar, setAvatar ] = useState('');
 
 	const handleChangeInput = e => {
-		console.log(e);
+		const value = form.getFieldsValue();
+		console.log(value);
 	};
 
-	const onFinish = () => {};
+	const onFinish = () => {
+		console.log(avatar);
+	};
 
 	return (
 		<article className='edit-profile'>
-			<div className='edit-profile__explain'>
-				<p>You can view and edit / update your personal details below:</p>
-			</div>
-
 			<section className='edit-profile__form'>
 				<Form
 					name='basic'
@@ -28,8 +29,8 @@ const EditProfile = () => {
 				>
 					<div className='edit-profile__form-antd-input-group'>
 						<article className='grid__item'>
-							<Form.Item label='Display Name' name='displayname'>
-								<Input placeholder='Khoa' />
+							<Form.Item label='Tên cửa hàng' name='displayname'>
+								<Input placeholder='Cửa hàng bán quần' />
 							</Form.Item>
 							<Form.Item label='First Name' name='firstname'>
 								<Input placeholder='Lam' />
@@ -74,14 +75,11 @@ const EditProfile = () => {
 							</Form.Item>
 						</article>
 
-						<article className='grid__item' style={{ display: 'flex', justifyContent: 'space-between' }}>
-							<Image w={250} h={250} />
-							<Image w={250} h={250} />
-						</article>
+						<BusinessLicense setAvatar={setAvatar} />
 					</div>
 
 					<Form.Item>
-						<button className='edit-profile__form-antd-submit' type='submit'>
+						<button className='edit-profile__form-antd-submit submit-change' type='submit'>
 							Update
 						</button>
 					</Form.Item>

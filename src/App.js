@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 // pages
 import AuthPage from './pages/auth';
 import CancelOrder from './pages/cancel-order';
+import CartPage from './pages/cart/index';
 import DeliveryHistory from './pages/delivery-history';
 import NotFound from './pages/not-found';
 import OrderManagement from './pages/order-management';
@@ -35,6 +36,7 @@ function App () {
 				<Route path='/products' element={<ProductsPage />} />
 				<Route path='/products/:productId' element={<ProductDetail />} />
 				<Route path='/store/:name' element={<ProfileStore />} />
+				<Route path='/cart' element={<CartPage />} />
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}
