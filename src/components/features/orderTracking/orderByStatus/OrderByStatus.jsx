@@ -70,17 +70,17 @@ const CancelOrder = ({ currentStatus, canDelete }) => {
 		},
 	]);
 
-	const handleOrderCancel = id => {
-		// const newData = data.filter(d => d !== id);
-		console.log(id);
-		// setData(newData);
+	const handleOrderCancel = async id => {
+		await orderApi.put.destroyOrder(id);
+		const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
+		setData(orders);
 	};
 
 	useEffect(
 		() => {
 			const fetchData = async () => {
 				const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
-				console.log(orders);
+
 				setData(orders);
 			};
 
