@@ -33,6 +33,12 @@ class HomePage extends React.Component {
 						<ul>
 							<Link to='order-management'>order-management</Link>
 						</ul>
+						<ul>
+							<Link to='store/profile'>quan li ho so cua hang</Link>
+						</ul>
+						<ul>
+							<Link to='cart'>cart</Link>
+						</ul>
 					</li>
 				</div>
 			</ContainerPage>
