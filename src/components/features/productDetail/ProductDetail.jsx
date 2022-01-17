@@ -21,8 +21,6 @@ const ProductDetail = () => {
         getData()
     }, [params.productId])
 
-  
-
     const onFinish = (values) => {
         console.log(values);
     };
@@ -33,7 +31,7 @@ const ProductDetail = () => {
         </div>
         <div className="info">
             <h1>{thisProduct.name}</h1>
-            <h2 className="price">{thisProduct.price} VNĐ/{thisProduct.unit}</h2>
+            <h2 className="price">{thisProduct.price.toLocaleString()} VNĐ/{thisProduct.unit}</h2>
             <div className="des">
                 <h3>{thisProduct.description}</h3>
             </div>

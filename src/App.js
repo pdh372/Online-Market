@@ -10,7 +10,7 @@ import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
 import HomePage from './pages/index';
 import ProductsPage from './pages/products'
-//import ProductDetail from './components/features/productDetail/ProductDetail'
+import SearchResult from './pages/search-result'
 import ProductDetail from './pages/product-detail'
 
 // import PrivateRoute from './PriateRoute';
@@ -33,6 +33,9 @@ function App () {
 				<Route path='/' element={<HomePage />} />
 				<Route path='/products' element={<ProductsPage />} />
 				<Route path='/products/:productId' element={<ProductDetail />} />
+				<Route path='/products/search/:keyWord' element={<SearchResult />} />
+				{/* <Route path='/products/search' element={<ProductsPage />} />
+				<Route path='/search/:keyWord' element={<SearchResult />} /> */}
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}
