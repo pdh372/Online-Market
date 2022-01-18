@@ -13,6 +13,9 @@ class HomePage extends React.Component {
 							<Link to='products'>products</Link>
 						</ul>
 						<ul>
+							<Link to='search'>search-result</Link>
+						</ul>
+						<ul>
 							<Link to='cancel-order'>cancel-order</Link>
 						</ul>
 						<ul>

@@ -1,26 +1,28 @@
 import React from "react";
-import './products.scss';
-import apiProduct from 'apis/product';
+import './searchResult.scss';
+import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom";
 import { Pagination } from 'antd';
 import { useEffect, useState } from 'react';
+import apiProduct from 'apis/product';
 
 const Products = () => {
+  const [result, setResult] = useState([]);
 
-  const [products, setProducts] = useState([]);
+  const params = useParams();
 
   useEffect(() => {
     const getProduct = async ()  => {
-      const productsData = await apiProduct.get.getProducts();
-      setProducts(productsData);
+      const productsData = await apiProduct.get.getProductByKeyWord(params.keyWord)
+          setResult(productsData);
     }
     getProduct()
-  }, [])
+  }, [params.keyWord])
 
   const renderProduct = (productsData) => {
     return productsData.map(product => {
       return (
-        <div className="box" key={product._id}>
+        <div className="box" key={String(product._id)}>
           <div >
             <img width="180px" height="180px" src={product.image} alt="img"/>
             <h4>
@@ -34,9 +36,10 @@ const Products = () => {
 
   return (
     <>
-      <h1>Products Page</h1>
+      
       <div className="list">
-        {renderProduct(products)}
+        <h2>Có {result.length} kết quả được tìm thấy</h2>
+        {renderProduct(result)}
       </div>
       <div className="list">
         <Pagination defaultCurrent={1} total={50} />

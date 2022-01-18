@@ -54,5 +54,8 @@ header {
 		width: 100%;
 		padding: 0px 20px;
 		margin-left: 10px;
+		position: relative;
+		top: 50%;
+		transform: translateY(-30%);
 	}
 }

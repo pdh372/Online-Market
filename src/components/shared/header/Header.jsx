@@ -4,23 +4,16 @@ import { AiOutlineLogin } from 'react-icons/ai';
 import { DropDownStyled, MenuStyled } from '../../elements/dropdown/header/header.styled';
 import { Menu } from 'antd';
 import './header.scss';
-// import { Input, Space } from 'antd';
-// import { AudioOutlined } from '@ant-design/icons';
+import { Input } from 'antd';
 
-// const { Search } = Input;
 
-// const suffix = (
-// 	<AudioOutlined
-// 		style={{
-// 			fontSize: 16,
-// 			color: '#1890ff',
-// 		}}
-// 	/>
-// );
-
-// const onSearch = value => console.log(value);
 
 const Header = () => {
+	const { Search } = Input;
+	const onSearch = value => (
+		window.location = "http://localhost:3000/products/search/"+value
+	);
+
 	const menuRef = useRef(
 		<MenuStyled className='menu'>
 			<Menu.Item className='menu-item'>
@@ -39,13 +32,13 @@ const Header = () => {
 				<Link to='/'>Logo</Link>
 			</div>
 
-			<div className='header__search'>
+			{/* <div className='header__search'>
 				<input type='text' placeholder='Tìm Kiếm' />
   				<button type="submit"><i class="fa fa-search"></i></button>
-			</div>
-			{/* <div className='input'>
-			<Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 500 }} />		
 			</div> */}
+			<div className='input'>
+			<Search placeholder="Tìm kiếm" allowClear onSearch={onSearch} style={{ width: 400 }} />		
+			</div>
 
 			<div className='header__router'>
 				<div className='rotuer-item'>
