@@ -1,0 +1,67 @@
+// .shipper { 
+//     //border: 1px solid rgb(201, 58, 58); 
+//     //min-height: 200px;
+//     // background-color: #ddecff;
+//     //display: inline-flex;
+//     //height: 30px; 
+//     //width: 220px;
+//     //margin: 20px;
+//     //text-align: center;
+//     //display: inline-block
+// } 
+// .shipper div { 
+//     //border: 1px solid rgb(0, 139, 182); 
+//     margin: 10px; 
+//     //text-align: center;
+//     //background-color: #9dd8ff;
+//     //height: 30px; 
+//     //width: 220px; 
+//     //border-radius: 10px;
+//     display: inline-flex;
+//     //display: inline-block
+//     //line-height: 30px;
+// } 
+
+// // .box div img {
+// //     //border: 2px solid rgb(255, 255, 255);
+// //     margin-top: 10px;
+// //     border-radius: 10px;
+// // }
+
+// // .list {
+// //     margin: 30px;
+// //     text-align: center;
+// // }
+
+.App {
+    margin-top: 20px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+}
+    
+table {
+    border: 1px solid rgb(0, 108, 128);
+    width: 800px;
+    height: 100px;
+    font-size: medium;
+}
+    
+th {
+    border-bottom: 1px solid rgb(0, 108, 128);
+    color: rgb(0, 108, 128);
+}
+    
+td {
+    text-align: center;
+}
+
+.status {
+    color: red;
+}
+
+.link {
+    font-weight: bold;
+}
