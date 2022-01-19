@@ -18,10 +18,6 @@ import ProductDetail from './pages/product-detail';
 import ApproveShipperDetail from './pages/admin/approve-shipper-detail'
 import ApproveProviderDetail from './pages/admin/approve-provider-detail'
 //import ProductDetail from './components/features/productDetail/ProductDetail'
-import ProductsPage from './pages/products'
-import SearchResult from './pages/search-result'
-import ProductDetail from './pages/product-detail'
-
 // import PrivateRoute from './PriateRoute';
 // scss
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
