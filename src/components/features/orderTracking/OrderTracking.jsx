@@ -22,7 +22,7 @@ const OrderTrackingComponent = () => {
 				<TabPane tab='Chờ Xác Nhận' key='confirming'>
 					{currentTab === 'confirming' && <OrderByStatus currentStatus={currentTab} />}
 				</TabPane>
-				<TabPane tab='Chờ Xác Nhận' key='preparing'>
+				<TabPane tab='Đang Chuẩn bị' key='preparing'>
 					{currentTab === 'preparing' && <OrderByStatus currentStatus={currentTab} />}
 				</TabPane>
 				<TabPane tab='Chờ Lấy Hàng' key='waiting-shipper'>
