@@ -13,7 +13,10 @@ class HomePage extends React.Component {
 							<Link to='products'>products</Link>
 						</ul>
 						<ul>
-							<Link to='search'>search-result</Link>
+							<Link to='admin/approveprovider'>admin/approveprovider</Link>
+						</ul>
+						<ul>
+							<Link to='admin/approveshipper'>admin/approveshipper</Link>
 						</ul>
 						<ul>
 							<Link to='cancel-order'>cancel-order</Link>

@@ -1,4 +1,5 @@
 import axiosDotNet from '../rootDotNet';
+import axiosJava from '../rootJava';
 
 class Put {
 	email = ({ userData, token }) => {
@@ -31,6 +32,14 @@ class Put {
 
 	forgetPassword = data => {
 		return axiosDotNet.put('/User/ForgetPassword', data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
+	};
+
+	activeUser = data => {
+		return axiosJava.put('/users/activeuser', data, {
 			headers : {
 				'x-auth-token' : 'token',
 			},

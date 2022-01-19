@@ -2,6 +2,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 
 // pages
 import AuthPage from './pages/auth';
+import AdminPage from './pages/admin';
 import CancelOrder from './pages/cancel-order';
 import CartPage from './pages/cart/index';
 import DeliveryHistory from './pages/delivery-history';
@@ -11,16 +12,12 @@ import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
 import ProfileStore from './pages/store/index';
 import HomePage from './pages/index';
-<<<<<<< HEAD
-import ProductsPage from './pages/products'
-import SearchResult from './pages/search-result'
-import ProductDetail from './pages/product-detail'
-=======
 import ProductsPage from './pages/products';
-//import ProductDetail from './components/features/productDetail/ProductDetail'
+import SearchResult from './pages/search-result';
 import ProductDetail from './pages/product-detail';
->>>>>>> 889370ef94d28fdb558e3ef406dedb48e2447c09
-
+import ApproveShipperDetail from './pages/admin/approve-shipper-detail'
+import ApproveProviderDetail from './pages/admin/approve-provider-detail'
+//import ProductDetail from './components/features/productDetail/ProductDetail'
 // import PrivateRoute from './PriateRoute';
 // scss
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
@@ -32,6 +29,9 @@ function App () {
 			{/* Start Router */}
 			<Routes>
 				<Route path='/auth/:name' element={<AuthPage />} />
+				<Route path='/admin/:name' element={<AdminPage />} />
+				<Route path='/admin/approveshipper/:shipperId' element={<ApproveShipperDetail />} />
+				<Route path='/admin/approveprovider/:storeId' element={<ApproveProviderDetail />} />
 				<Route path='/cancel-order' element={<CancelOrder />} />
 				<Route path='/delivery-history' element={<DeliveryHistory />} />
 				<Route path='/not-found' element={<NotFound />} />
@@ -41,14 +41,11 @@ function App () {
 				<Route path='/' element={<HomePage />} />
 				<Route path='/products' element={<ProductsPage />} />
 				<Route path='/products/:productId' element={<ProductDetail />} />
-<<<<<<< HEAD
 				<Route path='/products/search/:keyWord' element={<SearchResult />} />
 				{/* <Route path='/products/search' element={<ProductsPage />} />
 				<Route path='/search/:keyWord' element={<SearchResult />} /> */}
-=======
 				<Route path='/store/:name' element={<ProfileStore />} />
 				<Route path='/cart' element={<CartPage />} />
->>>>>>> 889370ef94d28fdb558e3ef406dedb48e2447c09
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}

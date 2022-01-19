@@ -166,6 +166,10 @@ const RegisterProvider = () => {
 	};
 
 	const onFinish = values => {
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		var dateTime = date+' '+time;
 		const dataForm = {
 			user: {
 				name: values.user.name,
@@ -174,6 +178,7 @@ const RegisterProvider = () => {
 				dob: values.user.dob.format('DD-MM-YYYY'),
 				phoneNumber: values.user.phone,
 				password: values.pass,
+				registerDate: dateTime,
 				address:
                 {
                     streetNo: values.user.number + ' ' + values.user.street,

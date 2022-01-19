@@ -163,7 +163,13 @@ const RegisterProvider = () => {
 		};
 	};
 	
+	
 	const onFinish = values => {
+		
+		var today = new Date();
+		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		var dateTime = date+' '+time;
 		const dataForm = {
 			User: {
 				Name: values.user.name,
@@ -171,7 +177,8 @@ const RegisterProvider = () => {
                 Email: values.user.email,
                 DoB: values.user.dob.format('DD-MM-YYYY'),
                 PhoneNumber: values.user.phone,
-                Password: values.pass,
+                Password: values.pass, 
+				registerDate: dateTime,
      	  	},
 			Area:
             {
@@ -186,7 +193,7 @@ const RegisterProvider = () => {
                 {
                     StreetNo: values.user.number + ' ' + values.user.street,
                 },
-				License: GiayPhep,
+				Lisence: GiayPhep,
 			},
 			ImgCI:{
 				Front: CMNDTruoc,
