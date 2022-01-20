@@ -1,4 +1,4 @@
-//import axiosDotNet from '../rootDotNet';
+import axiosDotNet from '../rootDotNet';
 import axiosJava from '../rootJava'
 
 class Get {
@@ -8,6 +8,10 @@ class Get {
 
 	shipperPending = data => {
 		return axiosJava.get('/users/shipperpending', data);
+	};
+
+	providerPending = data => {
+		return axiosDotNet.get('/user/providerpending', data);
 	};
 
 	shipper = async(userId) => {

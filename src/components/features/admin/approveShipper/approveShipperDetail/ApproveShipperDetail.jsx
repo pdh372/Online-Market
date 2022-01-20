@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import apiUser from 'apis/user';
 import { useEffect, useState } from 'react';
 import { Form, Button } from 'antd';
+import './approveShipperDetail.scss'
 
 function ApproveShipperDetail() {
     const [thisShipper, setThisShipper] = useState(null);
@@ -17,15 +18,7 @@ function ApproveShipperDetail() {
         getData()
     }, [params.shipperId])
 
-    // function imgConvert(binary){
-    //     const b = binary.split(",");
-    //     return b;
-    // }
-
-    // const imgSplit = (binary) => {
-    //     const b = binary.split(",");
-    //     return b;
-    // }
+    console.log(thisShipper)
 
     const onFinish = () => {
         console.log(thisShipper);
@@ -39,26 +32,44 @@ function ApproveShipperDetail() {
     };
 
     return (thisShipper &&
-        <div>
+        <div className="main">
             <h2>Thông tin đăng ký chi tiết người giao hàng</h2>
-            <h3>Ngày đăng ký: {thisShipper.user.registerDate}</h3>
-            <h3>Họ và tên: {thisShipper.user.name}</h3>
-            <h3>Ngày sinh: {thisShipper.user.dob}</h3>
-            <h3>Số điện thoại: {thisShipper.user.phoneNumber}</h3>
-            <h3>CCCD: {thisShipper.user.ciNum}</h3>
-            <h3>Địa chỉ: {thisShipper.user.address.streetNo} {thisShipper.user.address.area.ward}</h3>
-            <h3>Tình trạng: {thisShipper.user.status}</h3>
-            <h3>Ảnh CCCD: </h3>
-            {/* <img src={`data:image/png;base64,${binary_data}`} /> */}
-            <Form onFinish={onFinish} >
-                <Form.Item>
-                    <Button type='primary' htmlType='submit'>
-                        Duyệt tài khoản
-                    </Button>
-                </Form.Item>
-            </Form>
-        </div>
+            <div className="info">
+                <div className="col">
+                    <div>Thời gian đăng ký: {thisShipper.user.registerDate}</div>
+                    <div>Họ và tên: {thisShipper.user.name}</div>
+                    <div>Ngày sinh: {thisShipper.user.dob}</div>
+                    <div>Số điện thoại: {thisShipper.user.phoneNumber}</div>
+                    <div>CCCD: {thisShipper.user.ciNum}</div>
+                    <div>Số nhà, đường: {thisShipper.user.address.streetNo}</div>
+                    <div>Phường/Huyện: {thisShipper.area.ward}</div> 
+                    <div>Tỉnh/Thành phố: {thisShipper.area.city}</div>
+                    <div>Tình trạng: {thisShipper.user.status}</div>
+                    <Form onFinish={onFinish} className="button">
+                        <Form.Item>
+                            <Button type='primary' htmlType='submit'>
+                                Duyệt tài khoản
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
 
+
+                <div className="col">
+                    <div>Ảnh Căn cước công dân</div>
+                    <div><img src={thisShipper.user.imgCI.front} alt="" width={350} /></div>
+                    <div><img src={thisShipper.user.imgCI.backside} alt="" width={350} /></div>
+                </div>
+                <div className="col">
+                    <div>Ảnh Giấy phép lái xe</div>
+                    <div><img src={thisShipper.shipper.imgLicense.front} alt="" width={350} /></div>
+                    <div><img src={thisShipper.shipper.imgLicense.backside} alt="" width={350} /></div>
+                </div>
+
+
+
+            </div>
+        </div>
     )
 }
 
