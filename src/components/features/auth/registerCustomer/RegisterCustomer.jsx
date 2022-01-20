@@ -1,76 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, DatePicker, Cascader } from 'antd';
+import { Form, Input, Button, DatePicker, Cascader, Checkbox } from 'antd';
 import apiUser from 'apis/user';
-//import { useState } from 'react';
+import residences from '../address';
+import { useState } from 'react';
 
 //const { Option } = Select;
-// function onChange(e) {
-//     return e.target.checked
-// }
 
-const residences = [
-    {
-        value: 'TP Hồ Chí Minh',
-        label: 'TP Hồ Chí Minh',
-        children: [
-            {
-                value: 'Quận 1',
-                label: 'Quận 1',
-                children: [
-                    {
-                        value: 'Phường Bến Nghé',
-                        label: 'Phường Bến Nghé',
-                    },
-                    {
-                        value: 'Phường Bến Thành',
-                        label: 'Phường Bến Thành',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 2',
-                label: 'Quận 2',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 3',
-                label: 'Quận 3',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 4',
-                label: 'Quận 4',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 5',
-                label: 'Quận 5',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-        ],
-    },
-];
 const layout = {
     labelCol: {
         span: 8,
@@ -94,14 +30,18 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
-
-
 const RegisterCustomer = () => {
+    const [check, setCheck] = useState(null);
+
+    function onChange(e) {
+        setCheck(e.target.checked);
+    }
+
     const onFinish = (values) => {
         var today = new Date();
-		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-		var dateTime = date+' '+time;
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
         const dataForm = {
             User: {
                 Name: values.user.name,
@@ -125,11 +65,15 @@ const RegisterCustomer = () => {
         }
         console.log(dataForm);
 
+        if(check){
             apiUser.post.registerCustomer(dataForm).then(res => {
                 console.log(res);
                 alert(res);
             });
-        
+        }
+        else{
+            alert("Vui lòng đồng ý điều khoản của chúng tôi");
+        }      
     };
 
     return (
@@ -173,7 +117,7 @@ const RegisterCustomer = () => {
                         required: true,
                     },
                 ]}>
-                <DatePicker format={'DD/MM/YYYY'}/>
+                <DatePicker format={'DD/MM/YYYY'} />
             </Form.Item>
             <Form.Item
                 name={['user', 'phone']}
@@ -271,14 +215,14 @@ const RegisterCustomer = () => {
             >
                 <Input.Password />
             </Form.Item>
-            {/* <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 9 }}>
+            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 9 }}>
                 <Checkbox onChange={onChange}>Vui lòng đồng ý với các điều khoản của chúng tôi</Checkbox>
-            </Form.Item> */}
-            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>               
-				<Button type='primary' htmlType='submit'>
-					Đăng ký
-				</Button>
-			</Form.Item>
+            </Form.Item>
+            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>
+                <Button type='primary' htmlType='submit'>
+                    Đăng ký
+                </Button>
+            </Form.Item>
         </Form>
     );
 };

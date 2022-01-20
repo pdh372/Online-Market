@@ -9,13 +9,13 @@ const ApproveShipper = () => {
 
     const [shippers, setShippers] = useState([]);
 
-  useEffect(() => {
-    const getData = async ()  => {
-      const data = await apiUser.get.shipperPending();
-      setShippers(data);
-    }
-    getData()
-  }, [])
+    useEffect(() => {
+        const getData = async () => {
+            const data = await apiUser.get.shipperPending();
+            setShippers(data);
+        }
+        getData()
+    }, [])
 
     return (
         <div>
@@ -44,7 +44,6 @@ const ApproveShipper = () => {
                 </table>
             </div>
         </div>
-
     )
 };
 

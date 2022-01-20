@@ -1,71 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button,  DatePicker, Cascader } from 'antd';
+import { Form, Input, Button, DatePicker, Cascader, Checkbox } from 'antd';
 //import { UploadOutlined } from '@ant-design/icons';
 import apiUser from 'apis/user';
-
-const residences = [
-    {
-        value: 'TP Hồ Chí Minh',
-        label: 'TP Hồ Chí Minh',
-        children: [
-            {
-                value: 'Quận 1',
-                label: 'Quận 1',
-                children: [
-                    {
-                        value: 'Phường Bến Nghé',
-                        label: 'Phường Bến Nghé',
-                    },
-                    {
-                        value: 'Phường Bến Thành',
-                        label: 'Phường Bến Thành',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 2',
-                label: 'Quận 2',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 3',
-                label: 'Quận 3',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 4',
-                label: 'Quận 4',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 5',
-                label: 'Quận 5',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-        ],
-    },
-];
+import residences from '../address';
 
 
 const layout = {
@@ -108,6 +46,11 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const RegisterProvider = () => {
+	const [check, setCheck] = useState(null);
+
+    function onChange(e) {
+        setCheck(e.target.checked);
+    }
 	const [CMNDTruoc, setCMNDTruoc] = useState("");
 	const [CMNDSau, setCMNDSau] = useState("");
 	const [GiayPhepTruoc, setGiayPhepTruoc] = useState("");
@@ -115,10 +58,10 @@ const RegisterProvider = () => {
 
 	const handleChangeFile1 = (e) => {
 		let file = e.target.files[0];
-	
+
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
-	
+
 		reader.onloadend = function () {
 			if (reader.result) {
 				setCMNDTruoc(reader.result)
@@ -128,10 +71,10 @@ const RegisterProvider = () => {
 
 	const handleChangeFile2 = (e) => {
 		let file = e.target.files[0];
-	
+
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
-	
+
 		reader.onloadend = function () {
 			if (reader.result) {
 				setCMNDSau(reader.result)
@@ -141,10 +84,10 @@ const RegisterProvider = () => {
 
 	const handleChangeFile3 = (e) => {
 		let file = e.target.files[0];
-	
+
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
-	
+
 		reader.onloadend = function () {
 			if (reader.result) {
 				setGiayPhepTruoc(reader.result)
@@ -154,10 +97,10 @@ const RegisterProvider = () => {
 
 	const handleChangeFile4 = (e) => {
 		let file = e.target.files[0];
-	
+
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
-	
+
 		reader.onloadend = function () {
 			if (reader.result) {
 				setGiayPhepSau(reader.result)
@@ -167,9 +110,9 @@ const RegisterProvider = () => {
 
 	const onFinish = values => {
 		var today = new Date();
-		var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+		var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-		var dateTime = date+' '+time;
+		var dateTime = date + ' ' + time;
 		const dataForm = {
 			user: {
 				name: values.user.name,
@@ -180,33 +123,40 @@ const RegisterProvider = () => {
 				password: values.pass,
 				registerDate: dateTime,
 				address:
-                {
-                    streetNo: values.user.number + ' ' + values.user.street,
-                }
+				{
+					streetNo: values.user.number + ' ' + values.user.street,
+				}
 			},
-			area:{
+			area: {
 				city: values.user.residence[0],
 				district: values.user.residence[1],
-				ward: values.user.residence[2],		
+				ward: values.user.residence[2],
 			},
-			shipper:{
+			shipper: {
 				status: "absent",
-				
+
 			},
-			imgCI:{
+			imgCI: {
 				front: CMNDTruoc,
 				backside: CMNDSau,
 			},
-			imgLicense:{
+			imgLicense: {
 				front: GiayPhepTruoc,
 				backside: GiayPhepSau,
 			}
 		}
 		console.log(dataForm);
-		apiUser.post.registerShipper(dataForm).then(res => {           
-			console.log(res);
-            alert(res);
-        });
+
+
+		if (check) {
+			apiUser.post.registerShipper(dataForm).then(res => {
+				console.log(res);
+				alert(res);
+			});
+		}
+		else {
+			alert("Vui lòng đồng ý điều khoản của chúng tôi");
+		}
 	};
 
 	return (
@@ -254,7 +204,7 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<DatePicker format={'DD/MM/YYYY'}/>
+				<DatePicker format={'DD/MM/YYYY'} />
 			</Form.Item>
 			<Form.Item
 				name={['user', 'phone']}
@@ -281,7 +231,7 @@ const RegisterProvider = () => {
 				<Input />
 			</Form.Item>
 			<h3><center>Ảnh CMND/CCCD</center></h3>
-			<Form.Item 
+			<Form.Item
 				label="Mặt trước"
 				extra="Mặt trước"
 				rules={[
@@ -289,9 +239,9 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<Input required={true} type="file" onChange={(e) => handleChangeFile1(e)} /> 
+				<Input required={true} type="file" onChange={(e) => handleChangeFile1(e)} />
 			</Form.Item>
-			<Form.Item 
+			<Form.Item
 				label="Mặt sau"
 				extra="Mặt sau"
 				rules={[
@@ -299,7 +249,7 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<Input required={true} type="file" onChange={(e) => handleChangeFile2(e)} /> 
+				<Input required={true} type="file" onChange={(e) => handleChangeFile2(e)} />
 			</Form.Item>
 			{/* <Form.Item
 				name="upload"
@@ -370,7 +320,7 @@ const RegisterProvider = () => {
 				<Input />
 			</Form.Item>
 			<h3><center>Giấy phép lái xe A1/A2</center></h3>
-			<Form.Item 
+			<Form.Item
 				label="Ảnh GPLX mặt trước"
 				extra="Mặt trước"
 				rules={[
@@ -378,9 +328,9 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<Input required={true} type="file" onChange={(e) => handleChangeFile3(e)} /> 
+				<Input required={true} type="file" onChange={(e) => handleChangeFile3(e)} />
 			</Form.Item>
-			<Form.Item 
+			<Form.Item
 				label="Ảnh GPLX mặt sau"
 				extra="Mặt sau"
 				rules={[
@@ -388,7 +338,7 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<Input required={true} type="file" onChange={(e) => handleChangeFile4(e)} /> 
+				<Input required={true} type="file" onChange={(e) => handleChangeFile4(e)} />
 			</Form.Item>
 			{/* <Form.Item
 				name="upload"
@@ -458,6 +408,9 @@ const RegisterProvider = () => {
 				]}
 			>
 				<Input.Password />
+			</Form.Item>
+			<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 9 }}>
+				<Checkbox onChange={onChange}>Vui lòng đồng ý với các điều khoản của chúng tôi</Checkbox>
 			</Form.Item>
 			<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>
 				<Button type='primary' htmlType='submit'>

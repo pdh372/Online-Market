@@ -21,22 +21,25 @@ const ProductDetail = () => {
         getData()
     }, [params.productId])
 
+    console.log(thisProduct);
+
     const onFinish = (values) => {
         console.log(values);
     };
 
     return (thisProduct && <div className="product">
         <div className="avt">
-            <img width="350px" height="350px" src={thisProduct.image} alt="" />
+            <img width="350px"  src={thisProduct.product.image} alt="" />
         </div>
-        <div className="info">
-            <h1>{thisProduct.name}</h1>
-            <h2 className="price">{thisProduct.price.toLocaleString()} VNĐ/{thisProduct.unit}</h2>
+        <div className="infom">
+            <h1>{thisProduct.product.name}</h1>
+            <h2 className="price">{thisProduct.product.price.toLocaleString()} VNĐ/{thisProduct.product.unit}</h2>
+            <h4>{thisProduct.store.name}</h4>
             <div className="des">
-                <h3>{thisProduct.description}</h3>
+                <p>{thisProduct.product.description}</p>
             </div>
             <Form onFinish={onFinish} >
-                <h2>
+                <h1>
                     <Form.Item label="Số lượng">
                         <InputNumber min={0} defaultValue={0} />
                     </Form.Item>
@@ -45,7 +48,7 @@ const ProductDetail = () => {
                             Thêm vào giỏ
                         </Button>
                     </Form.Item>
-                </h2>
+                </h1>
             </Form>
         </div>
     </div >)
