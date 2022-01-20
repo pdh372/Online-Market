@@ -1,8 +1,8 @@
 import rootApi from '../rootJava';
 
 class Get {
-	user = type => {
-		return rootApi.get('statisticals/' + type);
+	user = () => {
+		return rootApi.get('statisticals/users');
 	};
 }
 
