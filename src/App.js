@@ -24,6 +24,7 @@ import ApproveProviderDetail from './pages/admin/approve-provider-detail'
 // scss
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import './scss/_index.scss';
+import StoreList from 'pages/store/storeList/storeList';
 
 function App () {
 	return (
@@ -40,7 +41,6 @@ function App () {
 				<Route path='/order-management' element={<OrderManagement />} />
 				<Route path='/order-tracking' element={<OrderTracking />} />
 				<Route path='/statistical/*' element={<StatisticalPage />} />
-				<Route path='/edit-profile' element={<EditProfile />} />
 				<Route path='/' element={<HomePage />} />
 				<Route path='/products' element={<ProductsPage />} />
 				<Route path='/products/:productId' element={<ProductDetail />} />
@@ -51,6 +51,7 @@ function App () {
 				<Route path='/cart' element={<CartPage />} />
 				<Route path='/profile' element={ <UserProfile /> } />
 				<Route path='/profile/edit' element={ <EditUserProfile /> } />
+				<Route path='/stores' element={ <StoreList /> } />
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}

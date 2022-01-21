@@ -45,6 +45,9 @@ class HomePage extends React.Component {
 						<ul>
 							<Link to='profile'>profile</Link>
 						</ul>
+						<ul>
+							<Link to='stores'>stores list</Link>
+						</ul>
 					</li>
 				</div>
 			</ContainerPage>
