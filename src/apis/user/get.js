@@ -1,49 +1,25 @@
 import axiosDotNet from '../rootDotNet';
-
+import axiosJava from '../rootJava';
 class Get {
-	userById = async (userId) => {
-		return axiosDotNet.get('/user/get/' + userId)
-	}
-
 	userStatus = async (role, status) => {
 		return axiosJava.get('/user/'+role+'/statusregister/'+status);
 	};
 
-	verifyChangeEmail = ({ token }) => {
-		return axiosDotNet.put('/users/verify-change-email', null, {
-			headers : {
-				'x-auth-token' : token,
-			},
-		});
+	userById = async (userId) => {
+		return axiosDotNet.get('/user/get/' + userId)
+	}
+
+	shipperPending = data => {
+		return axiosJava.get('/users/shipperpending', data);
 	};
 
-	password = ({ token, newPassword, currentPassword }) => {
-		return axiosDotNet.put(
-			'/users/password',
-			{ newPassword, currentPassword },
-			{
-				headers : {
-					'x-auth-token' : token,
-				},
-			},
-		);
+	providerPending = data => {
+		return axiosDotNet.get('/user/providerpending', data);
 	};
 
-	forgetPassword = data => {
-		return axiosDotNet.put('/User/ForgetPassword', data, {
-			headers : {
-				'x-auth-token' : 'token',
-			},
-		});
-	};
-
-	user = (data) => {
-		return axiosDotNet.put('/User/put/' + data.User.ObjectId, data, {
-			headers : {
-				'x-auth-token' : 'token',
-			},
-		});
-	};
+	shipper = async(userId) => {
+		return axiosJava.get('/shipper/'+userId);
+	}
 }
 
-export default new Put();
+export default new Get();

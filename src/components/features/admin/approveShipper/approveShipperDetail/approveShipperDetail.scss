@@ -1,0 +1,39 @@
+.main {
+    position: relative;
+    text-align: center;
+}
+
+.info { 
+    border: 2px solid rgb(212, 231, 255); 
+    //min-height: 200px;
+    background-color: #e1f8ff;
+    display: inline-flex;
+    height: 50%; 
+    width: 90%;
+    padding: 25px;
+    border-radius: 20px;
+} 
+
+.col {
+    margin: 10px;
+    border: 1px solid rgb(109, 172, 255); 
+    background-color: rgb(255, 255, 255);
+    width: 40%;
+    font-size: medium;
+    font-weight: bold;
+    text-align: left;
+    border-radius: 10px;
+}
+
+.col div {
+    margin: 10px;
+}
+ 
+.button {
+    position: relative;
+    text-align: center;
+}
+
+img {
+    border-radius: 10px;
+}

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input, Button, Upload, DatePicker } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { Form, Input, Button, DatePicker, Cascader, Checkbox } from 'antd';
+//import { UploadOutlined } from '@ant-design/icons';
+import apiUser from 'apis/user';
+import residences from '../address';
+
 
 const layout = {
 	labelCol: {
@@ -12,15 +15,15 @@ const layout = {
 	},
 };
 /* eslint-disable no-template-curly-in-string */
-const normFile = (e) => {
-	console.log('Upload event:', e);
+// const normFile = (e) => {
+// 	console.log('Upload event:', e);
 
-	if (Array.isArray(e)) {
-		return e;
-	}
+// 	if (Array.isArray(e)) {
+// 		return e;
+// 	}
 
-	return e && e.fileList;
-};
+// 	return e && e.fileList;
+// };
 
 const validateMessages = {
 	required: '${label} is required!',
@@ -43,8 +46,117 @@ const validateMessages = {
 /* eslint-enable no-template-curly-in-string */
 
 const RegisterProvider = () => {
+	const [check, setCheck] = useState(null);
+
+    function onChange(e) {
+        setCheck(e.target.checked);
+    }
+	const [CMNDTruoc, setCMNDTruoc] = useState("");
+	const [CMNDSau, setCMNDSau] = useState("");
+	const [GiayPhepTruoc, setGiayPhepTruoc] = useState("");
+	const [GiayPhepSau, setGiayPhepSau] = useState("");
+
+	const handleChangeFile1 = (e) => {
+		let file = e.target.files[0];
+
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		reader.onloadend = function () {
+			if (reader.result) {
+				setCMNDTruoc(reader.result)
+			}
+		};
+	};
+
+	const handleChangeFile2 = (e) => {
+		let file = e.target.files[0];
+
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		reader.onloadend = function () {
+			if (reader.result) {
+				setCMNDSau(reader.result)
+			}
+		};
+	};
+
+	const handleChangeFile3 = (e) => {
+		let file = e.target.files[0];
+
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		reader.onloadend = function () {
+			if (reader.result) {
+				setGiayPhepTruoc(reader.result)
+			}
+		};
+	};
+
+	const handleChangeFile4 = (e) => {
+		let file = e.target.files[0];
+
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		reader.onloadend = function () {
+			if (reader.result) {
+				setGiayPhepSau(reader.result)
+			}
+		};
+	};
+
 	const onFinish = values => {
-		console.log(values);
+		var today = new Date();
+		var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+		var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		var dateTime = date + ' ' + time;
+		const dataForm = {
+			user: {
+				name: values.user.name,
+				ciNum: values.user.id,
+				email: values.user.email,
+				dob: values.user.dob.format('DD-MM-YYYY'),
+				phoneNumber: values.user.phone,
+				password: values.pass,
+				registerDate: dateTime,
+				address:
+				{
+					streetNo: values.user.number + ' ' + values.user.street,
+				}
+			},
+			area: {
+				city: values.user.residence[0],
+				district: values.user.residence[1],
+				ward: values.user.residence[2],
+			},
+			shipper: {
+				status: "absent",
+
+			},
+			imgCI: {
+				front: CMNDTruoc,
+				backside: CMNDSau,
+			},
+			imgLicense: {
+				front: GiayPhepTruoc,
+				backside: GiayPhepSau,
+			}
+		}
+		console.log(dataForm);
+
+
+		if (check) {
+			apiUser.post.registerShipper(dataForm).then(res => {
+				console.log(res);
+				alert(res);
+			});
+		}
+		else {
+			alert("Vui lòng đồng ý điều khoản của chúng tôi");
+		}
 	};
 
 	return (
@@ -55,11 +167,11 @@ const RegisterProvider = () => {
 			validateMessages={validateMessages}
 		>
 			<h1><center>ĐĂNG KÝ TÀI KHOẢN NGƯỜI GIAO HÀNG</center></h1>
-			<p><center>
+			<center>
 				<Link to='/auth/login'>Đăng nhập |</Link>
 				<Link to='/auth/registercustomer'> Đăng ký khách hàng |</Link>
 				<Link to='/auth/registerprovider'> Đăng ký đối tác cung cấp</Link>
-			</center></p>
+			</center>
 			<h3><center>Điền các thông tin sau đây để đăng ký tài khoản người giao hàng</center></h3>
 			<Form.Item
 				name={['user', 'name']}
@@ -92,7 +204,7 @@ const RegisterProvider = () => {
 						required: true,
 					},
 				]}>
-				<DatePicker />
+				<DatePicker format={'DD/MM/YYYY'} />
 			</Form.Item>
 			<Form.Item
 				name={['user', 'phone']}
@@ -120,6 +232,26 @@ const RegisterProvider = () => {
 			</Form.Item>
 			<h3><center>Ảnh CMND/CCCD</center></h3>
 			<Form.Item
+				label="Mặt trước"
+				extra="Mặt trước"
+				rules={[
+					{
+						required: true,
+					},
+				]}>
+				<Input required={true} type="file" onChange={(e) => handleChangeFile1(e)} />
+			</Form.Item>
+			<Form.Item
+				label="Mặt sau"
+				extra="Mặt sau"
+				rules={[
+					{
+						required: true,
+					},
+				]}>
+				<Input required={true} type="file" onChange={(e) => handleChangeFile2(e)} />
+			</Form.Item>
+			{/* <Form.Item
 				name="upload"
 				label="Mặt trước"
 				valuePropName="fileList"
@@ -136,7 +268,7 @@ const RegisterProvider = () => {
 				</Upload>
 			</Form.Item>
 			<Form.Item
-				name="upload1"
+				name="upload"
 				label="Mặt sau"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
@@ -150,40 +282,20 @@ const RegisterProvider = () => {
 				<Upload name="backside" action="/upload.do" listType="picture">
 					<Button icon={<UploadOutlined />}>Click to upload</Button>
 				</Upload>
-			</Form.Item>
+			</Form.Item> */}
 			<h3><center>Thông tin địa chỉ</center></h3>
 			<Form.Item
-				name={['user', 'city']}
-				label='Thành phố'
+				name={['user', 'residence']}
+				label="Địa chỉ"
 				rules={[
 					{
+						type: 'array',
 						required: true,
+						message: 'Please select your habitual residence!',
 					},
 				]}
 			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				name={['user', 'district']}
-				label='Quận'
-				rules={[
-					{
-						required: true,
-					},
-				]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				name={['user', 'ward']}
-				label='Phường'
-				rules={[
-					{
-						required: true,
-					},
-				]}
-			>
-				<Input />
+				<Cascader options={residences} />
 			</Form.Item>
 			<Form.Item
 				name={['user', 'street']}
@@ -209,7 +321,27 @@ const RegisterProvider = () => {
 			</Form.Item>
 			<h3><center>Giấy phép lái xe A1/A2</center></h3>
 			<Form.Item
-				name="upload2"
+				label="Ảnh GPLX mặt trước"
+				extra="Mặt trước"
+				rules={[
+					{
+						required: true,
+					},
+				]}>
+				<Input required={true} type="file" onChange={(e) => handleChangeFile3(e)} />
+			</Form.Item>
+			<Form.Item
+				label="Ảnh GPLX mặt sau"
+				extra="Mặt sau"
+				rules={[
+					{
+						required: true,
+					},
+				]}>
+				<Input required={true} type="file" onChange={(e) => handleChangeFile4(e)} />
+			</Form.Item>
+			{/* <Form.Item
+				name="upload"
 				label="Ảnh GPLX mặt trước"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
@@ -225,7 +357,7 @@ const RegisterProvider = () => {
 				</Upload>
 			</Form.Item>
 			<Form.Item
-				name="upload2"
+				name="upload"
 				label="Ảnh GPLX mặt sau"
 				valuePropName="fileList"
 				getValueFromEvent={normFile}
@@ -239,7 +371,7 @@ const RegisterProvider = () => {
 				<Upload name="license2" action="/upload.do" listType="pdf">
 					<Button icon={<UploadOutlined />}>Click to upload</Button>
 				</Upload>
-			</Form.Item>
+			</Form.Item> */}
 			<h3><center>Thiết lập mật khẩu</center></h3>
 			<Form.Item
 				name={['pass']}
@@ -277,11 +409,15 @@ const RegisterProvider = () => {
 			>
 				<Input.Password />
 			</Form.Item>
+			<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 9 }}>
+				<Checkbox onChange={onChange}>Vui lòng đồng ý với các điều khoản của chúng tôi</Checkbox>
+			</Form.Item>
 			<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>
 				<Button type='primary' htmlType='submit'>
 					Đăng ký
 				</Button>
 			</Form.Item>
+
 		</Form>
 	);
 };

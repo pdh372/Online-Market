@@ -8,54 +8,6 @@ import './userStatistics.scss';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title, ChartDataLabels);
 
-const dataSeller = {
-	labels   : [ 'Vùng Xanh', 'Vùng Vàng', 'Vùng Cam', 'Vùng Đỏ' ],
-	datasets : [
-		{
-			data            : [ 124, 32, 54, 56 ],
-			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
-			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
-			borderWidth     : 1,
-		},
-	],
-};
-
-const dataBuyer = {
-	labels   : [ 'Vùng Xanh', 'Vùng Vàng', 'Vùng Cam', 'Vùng Đỏ' ],
-	datasets : [
-		{
-			data            : [ 12, 32, 34, 45 ],
-			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
-			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
-			borderWidth     : 1,
-		},
-	],
-};
-
-const dataShipper = {
-	labels   : [ 'Vùng Xanh', 'Vùng Vàng', 'Vùng Cam', 'Vùng Đỏ' ],
-	datasets : [
-		{
-			data            : [ 576, 345, 123, 234 ],
-			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
-			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
-			borderWidth     : 1,
-		},
-	],
-};
-
-const dataStatistic = {
-	labels   : [],
-	datasets : [
-		{
-			data            : [],
-			backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
-			borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
-			borderWidth     : 1,
-		},
-	],
-};
-
 const option = {
 	plugins : {
 		tooltip    : {
@@ -84,39 +36,42 @@ const option = {
 };
 
 const UserStatistics = () => {
-	const [ data, setData ] = useState(dataSeller);
+	const [ data, setData ] = useState({
+		labels   : [],
+		datasets : [
+			{
+				data            : [ 0, 0, 0, 0, 0 ],
+				backgroundColor : [ '#80caa1', '#e1da96', '#fa874d', '#ad0303' ],
+				borderColor     : [ '#56a87b', '#b6ad61', '#e06d33', '#7a0404' ],
+				borderWidth     : 1,
+			},
+		],
+	});
 
 	const handleClickRole = role => {
-		if (role === 'seller') {
-			setData(dataSeller);
-		}
-		else if (role === 'buyer') {
-			fetchData(role);
-			setData(dataBuyer);
-		}
-		else if (role === 'shipper') {
-			setData(dataShipper);
-		}
+		fetchData(role);
 	};
 
 	const fetchData = async type => {
-		const dataFromBe = await statisticalApi.get.user(type);
+		const newData = JSON.parse(JSON.stringify(data));
 
+		const dataFromBe = await statisticalApi.get.user();
+
+		const userByType = dataFromBe.users.filter(user => user.role === type);
+		dataFromBe.users = userByType;
 		const result = formatUserToStatistic(dataFromBe);
 
-		dataStatistic.labels = result.labels;
-		dataStatistic.datasets[0].data = result.data;
+		newData.labels = result.labels;
+		newData.datasets[0].data = result.data;
 
-		console.log(dataStatistic);
-
-		setData(dataStatistic);
+		setData(newData);
 	};
 
 	return (
 		<React.Fragment>
 			<article className='user-statistics-tabs'>
-				<div onClick={() => handleClickRole('buyer')}>Nguoi mua</div>
-				<div onClick={() => handleClickRole('seller')}>Nguoi Ban</div>
+				<div onClick={() => handleClickRole('customer')}>Nguoi mua</div>
+				<div onClick={() => handleClickRole('provider')}>Nguoi Ban</div>
 				<div onClick={() => handleClickRole('shipper')}>Shipper</div>
 			</article>
 

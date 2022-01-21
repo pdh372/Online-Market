@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './index.scss';
+import './statistical.scss';
 import ProductStatistics from './productStatistics/ProductStatistics';
 import UserStatistics from './userStatistics/UserStatistics';
 
 const StatisticsComponent = () => {
-	const [ type, setType ] = useState('');
+	const [ type, setType ] = useState(1);
 	return (
 		<section className='statistics'>
 			<section className='statistics__type'>

@@ -6,6 +6,7 @@ import ForgetPassword from '../../components/features/auth/forgetPassword/Forget
 import RegisterCustomer from '../../components/features/auth/registerCustomer/RegisterCustomer';
 import RegisterProvider from '../../components/features/auth/registerProvider/RegisterProvider';
 import RegisterShipper from '../../components/features/auth/registerShipper/RegisterShipper';
+import ContainerPage from '../../components/shared/containerPage/ContainerPage';
 
 const AuthPage = () => {
 	const params = useParams();
@@ -31,7 +32,11 @@ const AuthPage = () => {
 		}
 	};
 
-	return <div className='auth-page'>{handleRouter()}</div>;
+	return (
+		<ContainerPage>
+			<main className='auth-page'>{handleRouter()}</main>
+		</ContainerPage>
+	);
 };
 
 export default AuthPage;

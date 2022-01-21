@@ -1,7 +1,23 @@
+body {
+	min-height: 100vh;
+}
+
 #root {
 	width: 100%;
+	min-height: 100vh;
 }
 
 .app {
 	width: 100%;
+	min-height: 100vh;
+	position: relative;
+}
+
+.ant-dropdown-placement-bottomRight > .ant-dropdown-arrow {
+	background-color: lightgray !important;
+	border-color: lightgray;
+}
+
+main {
+	padding-bottom: 100px;
 }

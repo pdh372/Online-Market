@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ContainerPage from '../components/shared/containerPage/ContainerPage';
 import './homePage.scss';
 
 class HomePage extends React.Component {

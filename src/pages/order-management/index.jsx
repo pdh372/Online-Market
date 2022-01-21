@@ -1,5 +1,5 @@
 import ContainerPage from '../../components/shared/containerPage/ContainerPage';
-import OrderManagementComponent from '../../components/features/orderManagement/index';
+import OrderManagementComponent from '../../components/features/orderManagement/OrderManagement';
 
 const OrderManagement = () => {
 	return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'antd';
-import Post from '../../../../apis/user/post';
+import apiUser from 'apis/user';
 
 const Login = () => {
     const onFinish = (values) => {
@@ -10,7 +10,7 @@ const Login = () => {
             Password: values.password
         }
         console.log(dataForm);
-        Post.loginUser(dataForm).then(res => {
+        apiUser.post.loginUser(dataForm).then(res => {
             console.log(res);
             alert(res);
         });
