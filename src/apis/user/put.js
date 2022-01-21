@@ -1,6 +1,14 @@
 import axiosDotNet from '../rootDotNet';
 
 class Put {
+	user = (data) => {
+		return axiosDotNet.put('/user/put/' + data.User.ObjectId, data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
+	};
+
 	email = ({ userData, token }) => {
 		return axiosDotNet.put('/users/email', userData, {
 			headers : {

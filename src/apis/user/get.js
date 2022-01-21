@@ -1,12 +1,12 @@
 import axiosDotNet from '../rootDotNet';
 
 class Get {
-	profile = ({ token }) => {
-		return axiosDotNet.get('/users/', userData, {
-			headers : {
-				'x-auth-token' : token,
-			},
-		});
+	userById = async (userId) => {
+		return axiosDotNet.get('/user/get/' + userId)
+	}
+
+	userStatus = async (role, status) => {
+		return axiosJava.get('/user/'+role+'/statusregister/'+status);
 	};
 
 	verifyChangeEmail = ({ token }) => {

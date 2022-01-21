@@ -7,7 +7,9 @@ import NotFound from './pages/not-found';
 import OrderManagement from './pages/order-management';
 import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
-import EditProfile from './pages/profile/index';
+import ProfileStore from './pages/store/index';
+import UserProfile from 'pages/profile';
+import EditUserProfile from 'pages/profile/editProfile';
 import HomePage from './pages/index';
 // import PrivateRoute from './PriateRoute';
 // scss
@@ -26,7 +28,15 @@ function App () {
 				<Route path='/statistical/*' element={<StatisticalPage />} />
 				<Route path='/edit-profile' element={<EditProfile />} />
 				<Route path='/' element={<HomePage />} />
-
+				<Route path='/products' element={<ProductsPage />} />
+				<Route path='/products/:productId' element={<ProductDetail />} />
+				<Route path='/products/search/:keyWord' element={<SearchResult />} />
+				{/* <Route path='/products/search' element={<ProductsPage />} />
+				<Route path='/search/:keyWord' element={<SearchResult />} /> */}
+				<Route path='/store/:name' element={<ProfileStore />} />
+				<Route path='/cart' element={<CartPage />} />
+				<Route path='/profile' element={ <UserProfile /> } />
+				<Route path='/profile/edit' element={ <EditUserProfile /> } />
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}

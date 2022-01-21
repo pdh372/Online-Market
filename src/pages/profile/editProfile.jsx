@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import userApi from 'apis/user';
 import ContainerPage from 'components/shared/containerPage/ContainerPage';
-import Profile from 'components/features/user/profile/Profile';
+import EditProfile from 'components/features/user/profile/editProfile';
 
-const UserProfile = () => {
+const EditUserProfile = () => {
 	const [ user, setUser ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(true);
 
@@ -31,11 +31,11 @@ const UserProfile = () => {
 		return (
 			<React.Fragment>
 				<ContainerPage>
-					<Profile info={user} />
+					<EditProfile info={user} />
 				</ContainerPage>
 			</React.Fragment>
 		);
 	}
 };
 
-export default UserProfile;
+export default EditUserProfile;
