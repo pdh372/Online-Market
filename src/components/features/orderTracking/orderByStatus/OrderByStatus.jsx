@@ -37,7 +37,7 @@ const CancelOrder = ({ currentStatus, canDelete }) => {
 		},
 		{
 			name     : 'Shipping Fee',
-			selector : row => formatCurrency(row.shippingfee),
+			selector : row => formatCurrency(row.shippingFee),
 			sortable : true,
 			center   : true,
 		},
@@ -79,7 +79,10 @@ const CancelOrder = ({ currentStatus, canDelete }) => {
 	useEffect(
 		() => {
 			const fetchData = async () => {
-				const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
+				const orders = await orderApi.get.orderByStatusAndUserId_DOTNET(
+					currentStatus,
+					'61b46287def70a3102757cf4',
+				);
 
 				setData(orders);
 			};
