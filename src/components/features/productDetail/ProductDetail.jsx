@@ -6,6 +6,7 @@ import './productDetail.scss';
 import { useEffect, useState } from 'react';
 import apiProduct from 'apis/product';
 import orderApi from 'apis/order';
+import originService from 'helpers/originService';
 
 const ProductDetail = () => {
 	const [thisProduct, setThisProducts] = useState(null);
@@ -16,7 +17,8 @@ const ProductDetail = () => {
 	useEffect(() => {
 		const getData = async () => {
 			const productData = await apiProduct.get.getProductById(params.productId);
-
+			productData.product.origin = originService.getOrigin();
+			console.log(productData);
 			setThisProducts(productData);
 		};
 		getData();
@@ -63,6 +65,7 @@ const ProductDetail = () => {
 						{thisProduct.product.price.toLocaleString()} VNĐ/
 						{thisProduct.product.unit}
 					</h2>
+					<h4>Nguồn gốc xuất xứ: {thisProduct.product.origin}</h4>
 					<h4>{thisProduct.store.name}</h4>
 					<div className='des'>
 						<p>{thisProduct.product.description}</p>
