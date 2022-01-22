@@ -1,7 +1,8 @@
 import get from './get';
+import post from './post';
 
 const productApi = {
-	get,
+	get, post
 };
 
 export default productApi;
