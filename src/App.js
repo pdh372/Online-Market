@@ -25,8 +25,9 @@ import ApproveProviderDetail from './pages/admin/approve-provider-detail'
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import './scss/_index.scss';
 import StoreList from 'pages/store/storeList/storeList';
-import AddProductPage from 'pages/products/editProduct';
+import AddProductPage from 'pages/products/addProduct';
 import ProductsByStorePage from 'pages/products/productsByStore';
+import EditProductPage from 'pages/products/editProduct';
 
 function App () {
 	return (
@@ -48,6 +49,7 @@ function App () {
 				<Route path='/products/by-store' element={<ProductsByStorePage />} />
 				<Route path='/products/add' element={<AddProductPage />} />
 				<Route path='/products/:productId' element={<ProductDetail />} />
+				<Route path='/products/:productId/edit' element={<EditProductPage />} />
 				<Route path='/products/search/:keyWord' element={<SearchResult />} />
 				{/* <Route path='/products/search' element={<ProductsPage />} />
 				<Route path='/search/:keyWord' element={<SearchResult />} /> */}

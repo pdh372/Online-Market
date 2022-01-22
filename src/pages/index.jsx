@@ -19,6 +19,9 @@ class HomePage extends React.Component {
 							<Link to='products/add'>add product</Link>
 						</ul>
 						<ul>
+							<Link to='products/61eac75c184abb08cdce2a42/edit'>edit product</Link>
+						</ul>
+						<ul>
 							<Link to='admin/approveprovider'>admin/approveprovider</Link>
 						</ul>
 						<ul>

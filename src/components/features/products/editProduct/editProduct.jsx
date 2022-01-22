@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, DatePicker, Cascader } from 'antd';
 import productApi from '../../../../apis/product/index';
+import { useNavigate } from 'react-router-dom';
 
 const layout = {
 	labelCol   : {
@@ -25,29 +25,16 @@ const validateMessages = {
 	},
 };
 
-const AddProduct = () => {
-	const [ productImage, setProductImage ] = useState(null);
-	const navigate = useNavigate();
-
-	const handleAddImage = e => {
-		const file = e.target.files[0];
-
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-
-		reader.onloadend = function () {
-			if (reader.result) {
-				setProductImage(reader.result);
-			}
-		};
-	};
+const EditProduct = props => {
+	const { info } = props;
+  const navigate = useNavigate();
 
 	const onFinish = values => {
 		const dataForm = {
 			Product : {
+				id          : values.product.id,
 				name        : values.product.name,
 				description : values.product.description,
-				image       : productImage,
 				price       : values.product.price,
 				unit        : values.product.unit,
 				category    : values.product.category,
@@ -56,22 +43,41 @@ const AddProduct = () => {
 		};
 
 		console.log(dataForm);
-    productApi.post.addProduct(dataForm.Product).then(res => {
-      console.log(res);
-  });
-	navigate('/');
+		// productApi.put.editProduct(dataForm.Product).then(res => {
+		// 	console.log(res);
+		// });
 	};
+
+  const handleDeleteProduct = () => {
+    const id = document.getElementById('productId').value;
+    productApi.deleteApi.deleteProduct(id);
+    navigate('/');
+  }
+
 
 	return (
 		<Form
 			{...layout}
 			name='nest-messages'
 			onFinish={onFinish}
+      initialValues={info}
 			validateMessages={validateMessages}
 		>
 			<h1>
-				<center>THÊM SẢN PHẨM MỚI</center>
+				<center>CHỈNH SỬA SẢN PHẨM</center>
 			</h1>
+      <Form.Item
+				name={[ 'product', 'id' ]}
+				label='Id: CHỈ ĐỂ TEST'
+				rules={[
+					{
+						type     : 'string',
+						required : true,
+					},
+				]}
+			>
+				<Input id='productId' />
+			</Form.Item>
 
 			<Form.Item
 				name={[ 'product', 'name' ]}
@@ -83,7 +89,7 @@ const AddProduct = () => {
 					},
 				]}
 			>
-				<Input />
+				<Input placeholder={info.name} />
 			</Form.Item>
 
 			<Form.Item
@@ -96,7 +102,7 @@ const AddProduct = () => {
 					},
 				]}
 			>
-				<Input />
+				<Input placeholder={info.description} />
 			</Form.Item>
 
 			<Form.Item
@@ -108,7 +114,7 @@ const AddProduct = () => {
 					},
 				]}
 			>
-				<Input type='number' />
+				<Input type='number' placeholder={info.price} />
 			</Form.Item>
 
 			<Form.Item
@@ -121,7 +127,7 @@ const AddProduct = () => {
 					},
 				]}
 			>
-				<Input />
+				<Input placeholder={info.unit} />
 			</Form.Item>
 
 			<Form.Item
@@ -133,7 +139,7 @@ const AddProduct = () => {
 					},
 				]}
 			>
-				<select>
+				<select defaultValue={info.category}>
 					<option />
 					<option value='Thịt'>Thịt</option>
 					<option value='Cá'>Cá</option>
@@ -144,25 +150,18 @@ const AddProduct = () => {
 				</select>
 			</Form.Item>
 
-			<Form.Item
-				name={[ 'product', 'image' ]}
-				label='Hình ảnh'
-				rules={[
-					{
-						required : true,
-					},
-				]}
-			>
-				<Input type='file' onChange={e => handleAddImage(e)} />
-			</Form.Item>
-
 			<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 11 }}>
 				<Button type='primary' htmlType='submit'>
-					Thêm
+					Lưu
+				</Button>
+        <br/>
+        <br/>
+        <Button type='danger' htmlType='button' onClick={handleDeleteProduct}>
+					Xóa
 				</Button>
 			</Form.Item>
 		</Form>
 	);
 };
 
-export default AddProduct;
+export default EditProduct;
