@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DataTable from 'react-data-table-component';
+import orderApi from '../../../../apis/order/index';
 
 const columns = [
 	{
@@ -9,138 +10,52 @@ const columns = [
 		center   : true,
 	},
 	{
-		name     : 'Tên Sản Phẩm',
-		selector : row => row.name,
+		name     : 'Tình Trạng',
+		selector : row => row.currentStatus,
 		sortable : true,
 		center   : true,
 	},
 	{
-		name     : 'Thời Gian Nhận',
-		selector : row => row.startTime,
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'Thời Gian Giao',
-		selector : row => row.endTime,
+		name     : 'Phí Giao Hàng',
+		selector : row => row.shippingFee,
 		sortable : true,
 		center   : true,
 	},
 	{
 		name     : 'Giá Trị Sản Phẩm',
-		selector : row => row.totalPrice,
+		selector : row => row.total,
 		sortable : true,
 		center   : true,
 	},
 	{
-		name     : 'Địa Điểm Giao Hàng',
-		selector : row => row.diaDiemGiaoHang,
+		name     : 'Ngày Đặt',
+		selector : row => row.orderDate,
 		sortable : true,
 		center   : true,
 	},
 	{
-		name     : 'Địa Điểm Nhận Hàng',
-		selector : row => row.diaDiemNhanHang,
+		name     : 'Ngày Giao',
+		selector : row => row.deliveryDate,
 		sortable : true,
 		center   : true,
 	},
-	{
-		name     : 'Số Điện Thoại Người Giao',
-		selector : row => row.sdtNguoiGiao,
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'Số Điện Thoại Người Nhận',
-		selector : row => row.sdtNguoiNhan,
-		sortable : true,
-		center   : true,
-	},
-
-	// {
-	// 	name     : 'Địa Điểm Nhận',
-	// 	selector : row => row.action,
-	// 	sortable : true,
-	// 	center   : true,
-	// 	cell     : row => {
-	// 		return (
-	// 			<div style={{ display: 'flex' }}>
-	// 				<div>1</div>
-	// 			</div>
-	// 		);
-	// 	},
-	// },
 ];
 
 const TableDeleveryHistory = () => {
-	const [ data ] = useState([
-		{
-			_id             : '1',
-			name            : 'Cá Chép',
-			startTime       : '1-1-2021',
-			endTime         : '2-1-2021',
-			totalPrice      : '10000',
-			diaDiemGiaoHang : 'Khu B',
-			diaDiemNhanHang : 'Khu A',
-			sdtNguoiGiao    : '092763721',
-			sdtNguoiNhan    : '0169237113',
-		},
-		{
-			_id             : '1',
-			name            : 'Cá Chép',
-			startTime       : '1-1-2021',
-			endTime         : '2-1-2021',
-			totalPrice      : '10000',
-			diaDiemGiaoHang : 'Khu B',
-			diaDiemNhanHang : 'Khu A',
-			sdtNguoiGiao    : '092763721',
-			sdtNguoiNhan    : '0169237113',
-		},
-		{
-			_id             : '1',
-			name            : 'Cá Chép',
-			startTime       : '1-1-2021',
-			endTime         : '2-1-2021',
-			totalPrice      : '10000',
-			diaDiemGiaoHang : 'Khu B',
-			diaDiemNhanHang : 'Khu A',
-			sdtNguoiGiao    : '092763721',
-			sdtNguoiNhan    : '0169237113',
-		},
-		{
-			_id             : '1',
-			name            : 'Cá Chép',
-			startTime       : '1-1-2021',
-			endTime         : '2-1-2021',
-			totalPrice      : '10000',
-			diaDiemGiaoHang : 'Khu B',
-			diaDiemNhanHang : 'Khu A',
-			sdtNguoiGiao    : '092763721',
-			sdtNguoiNhan    : '0169237113',
-		},
-		{
-			_id             : '1',
-			name            : 'Cá Chép',
-			startTime       : '1-1-2021',
-			endTime         : '2-1-2021',
-			totalPrice      : '10000',
-			diaDiemGiaoHang : 'Khu B',
-			diaDiemNhanHang : 'Khu A',
-			sdtNguoiGiao    : '092763721',
-			sdtNguoiNhan    : '0169237113',
-		},
-		{
-			_id             : '1',
-			name            : 'Cá Chép',
-			startTime       : '1-1-2021',
-			endTime         : '2-1-2021',
-			totalPrice      : '10000',
-			diaDiemGiaoHang : 'Khu B',
-			diaDiemNhanHang : 'Khu A',
-			sdtNguoiGiao    : '092763721',
-			sdtNguoiNhan    : '0169237113',
-		},
-	]);
+	const [ data, setData ] = useState([]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const orders = await orderApi.get.orderByShipper();
+
+			console.log(orders);
+			console.log(orders.map(o => o.shippingfee));
+
+			setData(orders);
+		};
+
+		fetchData();
+	}, []);
 
 	return (
 		<section>
