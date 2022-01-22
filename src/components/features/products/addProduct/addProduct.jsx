@@ -133,6 +133,10 @@ const AddProduct = () => {
 				<select>
 					<option value='thịt'>Thịt</option>
 					<option value='cá'>Cá</option>
+					<option value='trứng'>Trứng</option>
+					<option value='rau'>Rau</option>
+					<option value='củ'>Củ</option>
+					<option value='trái cây'>Trái cây</option>
 				</select>
 			</Form.Item>
 
