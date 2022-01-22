@@ -53,7 +53,7 @@ export const columns = [
 	},
 	{
 		name     : 'shippingfee',
-		selector : row => formatCurrency(row.shippingfee),
+		selector : row => formatCurrency(row.shippingFee),
 		sortable : true,
 		center   : true,
 	},
@@ -69,17 +69,4 @@ export const columns = [
 		sortable : true,
 		center   : true,
 	},
-	// {
-	// 	name     : 'action',
-	// 	selector : row => row.customer,
-	// 	sortable : true,
-	// 	center   : true,
-	// 	cell     : row => {
-	// 		return (
-	// 			<div style={{ display: 'flex' }}>
-	// 				<DeleteAction />
-	// 			</div>
-	// 		);
-	// 	},
-	// },
 ];
