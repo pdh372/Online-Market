@@ -49,8 +49,7 @@ const ProductDetail = () => {
 		}
 	};
 
-	const onChange = (e) => {
-		const newQuantity = quantity + 1;
+	const handleChange = (newQuantity) => {
 		setQuantity(newQuantity);
 	};
 	return (
@@ -77,7 +76,7 @@ const ProductDetail = () => {
 									min={0}
 									defaultValue={0}
 									value={quantity}
-									onChange={onChange}
+									onChange={(value) => handleChange(value)}
 								/>
 							</Form.Item>
 							<Form.Item>
