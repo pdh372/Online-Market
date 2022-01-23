@@ -7,21 +7,24 @@ import OrderDetail from 'components/features/orderDetail/orderDetail';
 import orderApi from 'apis/order';
 
 const OrderDetailPage = () => {
-  const { orderId } = useParams();
-  const [order, setOrder] = useState({});
+	const { orderId } = useParams();
+	const [ order, setOrder ] = useState({});
 	const [ isLoading, setIsLoading ] = useState(true);
 
-  useEffect(async () => {
-    const getOrderDetail = async (id) => {
-      const orderData = await orderApi.get.orderById(id);
-      setOrder(orderData);
-    }
+	useEffect(
+		() => {
+			const getOrderDetail = async id => {
+				const orderData = await orderApi.get.orderById(id);
+				setOrder(orderData);
+			};
 
-    await getOrderDetail(orderId);
-		setIsLoading(false);
-  }, [])
+			getOrderDetail(orderId);
+			setIsLoading(false);
+		},
+		[ orderId ],
+	);
 
-  if (isLoading) {
+	if (isLoading) {
 		return (
 			<React.Fragment>
 				<ContainerPage>

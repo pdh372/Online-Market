@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, DatePicker, Cascader } from 'antd';
+import React from 'react';
+import { Form, Input, Button } from 'antd';
 import productApi from '../../../../apis/product/index';
 import { useNavigate } from 'react-router-dom';
 
