@@ -6,15 +6,15 @@ const StoreList = () => {
 	const [ isLoading, setIsLoading ] = useState(true);
 	const [ stores, setStores ] = useState([]);
 
-	useEffect(async () => {
-		const data = await storeApi.get.getAll();
-		setStores(data);
-		setIsLoading(false);
-	}, []);
+	useEffect(() => {
+		const getData = async () => {
+			const data = await storeApi.get.getAll();
+			setStores(data);
+			setIsLoading(false);
+		};
 
-  const deleteStore = id => {
-    
-  }
+		getData();
+	}, []);
 
 	const renderStores = () => {
 		const storeRows = stores.map(item => {
@@ -24,9 +24,11 @@ const StoreList = () => {
 					<td>{item.type}</td>
 					<td>{item.address.streetNo}</td>
 					<td>
-						<img src={item.license} width='400px' />
+						<img src={item.license} width='400px' alt='anh' />
 					</td>
-					<td><button>Xóa</button></td>
+					<td>
+						<button>Xóa</button>
+					</td>
 				</tr>
 			);
 		});

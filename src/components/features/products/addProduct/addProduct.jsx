@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Input, Button, DatePicker, Cascader } from 'antd';
+import { Form, Input, Button } from 'antd';
 import productApi from '../../../../apis/product/index';
 
 const layout = {
@@ -56,19 +56,14 @@ const AddProduct = () => {
 		};
 
 		console.log(dataForm);
-    productApi.post.addProduct(dataForm.Product).then(res => {
-      console.log(res);
-  });
-	navigate('/');
+		productApi.post.addProduct(dataForm.Product).then(res => {
+			console.log(res);
+		});
+		navigate('/');
 	};
 
 	return (
-		<Form
-			{...layout}
-			name='nest-messages'
-			onFinish={onFinish}
-			validateMessages={validateMessages}
-		>
+		<Form {...layout} name='nest-messages' onFinish={onFinish} validateMessages={validateMessages}>
 			<h1>
 				<center>THÊM SẢN PHẨM MỚI</center>
 			</h1>

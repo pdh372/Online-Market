@@ -8,13 +8,13 @@ const EditUserProfile = () => {
 	const [ user, setUser ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(true);
 
-	useEffect(async () => {
+	useEffect(() => {
 		const getUser = async id => {
 			const userData = await userApi.get.userById(id);
 			setUser(userData[0]);
 		};
 
-		await getUser('61e6c302071c4a6bdb501b7a');
+		getUser('61e6c302071c4a6bdb501b7a');
 		setIsLoading(false);
 	}, []);
 

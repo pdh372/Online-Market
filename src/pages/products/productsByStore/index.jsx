@@ -6,16 +6,16 @@ import ProductsByStore from 'components/features/products/productsByStore/produc
 import productApi from 'apis/product';
 
 const ProductsByStorePage = () => {
-  const [ products, setProducts ] = useState(null);
+	const [ products, setProducts ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(true);
 
-	useEffect(async () => {
+	useEffect(() => {
 		const getProductsByStore = async id => {
 			const productsData = await productApi.get.getProductByStore(id);
 			setProducts(productsData);
 		};
 
-    await getProductsByStore('61d7e6f52a36950cf2312c57');
+		getProductsByStore('61d7e6f52a36950cf2312c57');
 		setIsLoading(false);
 	}, []);
 
@@ -37,6 +37,6 @@ const ProductsByStorePage = () => {
 			</React.Fragment>
 		);
 	}
-}
+};
 
 export default ProductsByStorePage;

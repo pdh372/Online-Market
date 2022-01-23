@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import productApi from 'apis/product';
-import { progressive } from '@cloudinary/url-gen/qualifiers/progressive';
 
 const OrderDetail = props => {
 	const { detail } = props;
 	const [ products, setProducts ] = useState([]);
 
-	useEffect(() => {
-		// console.log(detail.products);
-		const getProducts = async () => {
-			const productData = [];
-			for (let i = 0; i < detail.products.length; i++) {
-				const data = await productApi.get.getProductById(detail.products[i].productId);
-				data.product.quantity = detail.products[i].quantity;
-				productData.push(data);
-			}
-			setProducts(productData);
-		};
+	useEffect(
+		() => {
+			// console.log(detail.products);
+			const getProducts = async () => {
+				const productData = [];
+				for (let i = 0; i < detail.products.length; i++) {
+					const data = await productApi.get.getProductById(detail.products[i].productId);
+					data.product.quantity = detail.products[i].quantity;
+					productData.push(data);
+				}
+				setProducts(productData);
+			};
 
-		getProducts();
-	}, []);
+			getProducts();
+		},
+		[ detail.products ],
+	);
 
 	const renderInfo = () => {
 		return (
@@ -50,20 +52,20 @@ const OrderDetail = props => {
 				<h2>Danh sách sản phẩm</h2>
 				{products.map((item, index) => (
 					<React.Fragment key={index}>
-					<div className='user-profile'>
-						<div className='title'>Tên</div>
-						<div className='info'>{item.product.name}</div>
+						<div className='user-profile'>
+							<div className='title'>Tên</div>
+							<div className='info'>{item.product.name}</div>
 
-						<div className='title'>Đơn giá</div>
-						<div className='info'>{item.product.price}</div>
+							<div className='title'>Đơn giá</div>
+							<div className='info'>{item.product.price}</div>
 
-						<div className='title'>Số lượng</div>
-						<div className='info'>{item.product.quantity}</div>
+							<div className='title'>Số lượng</div>
+							<div className='info'>{item.product.quantity}</div>
 
-						<div className='title'>Người bán</div>
-						<div className='info'>{item.store.name}</div>
-					</div>
-					<br/>
+							<div className='title'>Người bán</div>
+							<div className='info'>{item.store.name}</div>
+						</div>
+						<br />
 					</React.Fragment>
 				))}
 			</div>
