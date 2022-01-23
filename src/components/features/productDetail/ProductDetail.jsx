@@ -9,37 +9,64 @@ import orderApi from 'apis/order';
 import originService from 'helpers/originService';
 
 const ProductDetail = () => {
-	const [thisProduct, setThisProducts] = useState(null);
-	const [quantity, setQuantity] = useState(0);
+	const [ thisProduct, setThisProducts ] = useState(null);
+	const [ quantity, setQuantity ] = useState(0);
 
 	const params = useParams();
 
-	useEffect(() => {
-		const getData = async () => {
-			const productData = await apiProduct.get.getProductById(params.productId);
-			productData.product.origin = originService.getOrigin();
-			console.log(productData);
-			setThisProducts(productData);
-		};
-		getData();
-	}, [params.productId]);
+	useEffect(
+		() => {
+			const getData = async () => {
+				const productData = await apiProduct.get.getProductById(params.productId);
+				productData.product.origin = originService.getOrigin();
+				console.log(productData);
+				setThisProducts(productData);
+			};
+			getData();
+		},
+		[ params.productId ],
+	);
 
-	const onFinish = (values) => {
+	const onFinish = values => {
 		console.log(values);
+	};
+
+	const addToCart = () => {
+		const cart = localStorage.getItem('cart');
+		console.log(thisProduct.product._id);
+		const data = {
+			_id         : thisProduct.product._id,
+			image       : thisProduct.product.image,
+			name        : thisProduct.product.name,
+			description : thisProduct.product.description,
+			price       : thisProduct.product.price,
+			quantity    : quantity === 0 ? 1 : quantity,
+		};
+
+		if (cart === null) {
+			const products = [];
+			products.push(data);
+			localStorage.setItem('cart', JSON.stringify(products));
+		}
+		else {
+			const products = JSON.parse(cart);
+			products.push(data);
+			localStorage.setItem('cart', JSON.stringify(products));
+		}
 	};
 
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
 		let order = {
-			products: [
+			products : [
 				{
-					productId: thisProduct.product._id,
+					productId : thisProduct.product._id,
 					quantity,
-					unitPrice: thisProduct.product.price,
+					unitPrice : thisProduct.product.price,
 				},
 			],
-			provider: thisProduct.product.store,
+			provider : thisProduct.product.store,
 		};
 		try {
 			await orderApi.post(order);
@@ -49,7 +76,7 @@ const ProductDetail = () => {
 		}
 	};
 
-	const handleChange = (newQuantity) => {
+	const handleChange = newQuantity => {
 		setQuantity(newQuantity);
 	};
 	return (
@@ -76,12 +103,20 @@ const ProductDetail = () => {
 									min={0}
 									defaultValue={0}
 									value={quantity}
-									onChange={(value) => handleChange(value)}
+									onChange={value => handleChange(value)}
 								/>
 							</Form.Item>
 							<Form.Item>
 								<Button type='primary' htmlType='submit' onClick={handleSubmit}>
 									Mua luôn
+								</Button>
+								<Button
+									type='primary'
+									htmlType='submit'
+									onClick={addToCart}
+									style={{ marginLeft: '10px' }}
+								>
+									Thêm Vô Giỏ Hàng
 								</Button>
 							</Form.Item>
 						</h1>

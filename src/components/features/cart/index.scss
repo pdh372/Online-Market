@@ -1,4 +1,4 @@
-.cart {
+.cart-huy {
 	img {
 		max-width: 100%;
 		vertical-align: middle;
@@ -91,7 +91,7 @@
 	.remove {
 		float: left;
 	}
-
+	
 	.col.left {
 		width: 70%;
 	}
@@ -100,7 +100,8 @@
 		width: 30%;
 		position: absolute;
 		right: 0;
-		top: calc(50% - 30px);
+		top: 50%;
+		transform: translateY(-50%);
 	}
 
 	.detail {

@@ -36,7 +36,7 @@ const ProductList = ({ products, onChangeProductQuantity, onRemoveProduct }) => 
 
 								<div className='remove'>
 									<svg
-										onClick={() => onRemoveProduct(index)}
+										onClick={() => onRemoveProduct(index, product._id)}
 										version='1.1'
 										className='close'
 										x='0px'
