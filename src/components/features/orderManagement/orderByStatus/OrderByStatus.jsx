@@ -4,71 +4,86 @@ import formatDateMongoose from 'helpers/formatDateMongoose';
 import formatCurrency from 'helpers/formatCurrency';
 import Table from 'components/elements/table/index';
 import orderApi from 'apis/order';
-import { AiOutlineDelete } from 'react-icons/ai';
 import { Tag } from 'antd';
+import DeleteAction from './action/delete';
+import PutAction from './action/put';
 
 const CancelOrder = ({ currentStatus, canDelete }) => {
 	const [ data, setData ] = useState([]);
 
 	const columns = useRef([
 		{
-			name     : 'Name',
-			selector : row => row.customer,
-			sortable : true,
-			center   : true,
-		},
-		{
-			name     : 'Order Date',
+			name     : 'Ngày Tạo Đơn',
 			selector : row => row.orderDate,
 			sortable : true,
 			center   : true,
 		},
 		{
-			name     : 'Delivery Date',
+			name     : 'Ngày Giao',
 			selector : row => row.deliveryDate,
 			sortable : true,
 			center   : true,
 		},
 		{
-			name     : 'Total',
+			name     : 'Tổng Đơn',
 			selector : row => formatCurrency(row.total),
 			sortable : true,
 			center   : true,
 		},
 		{
-			name     : 'Shipping Fee',
+			name     : 'Phí Giao',
 			selector : row => formatCurrency(row.shippingFee),
 			sortable : true,
 			center   : true,
 		},
 		{
-			name     : 'Status',
+			name     : 'Trạng Thái',
 			selector : row => row.currentStatus,
 			sortable : true,
 			center   : true,
 		},
 		{
-			name     : 'UpDated time',
+			name     : 'Ngày Cập Nhật',
 			selector : row => formatDateMongoose(row.upDatedtime),
 			sortable : true,
 			center   : true,
 		},
 		{
-			name     : 'Action',
+			name     : 'Hành Động',
 			selector : row => row.customer,
 			sortable : true,
 			center   : true,
 			cell     : row => {
 				return (
-					<div style={{ display: 'flex' }} onClick={() => handleOrderCancel(row._id)}>
-						<Tag style={{ cursor: 'pointer', backgroundColor: 'red', borderRadius: '5px' }}>
-							<AiOutlineDelete />
-						</Tag>
-					</div>
+					<React.Fragment>
+						<div
+							style={{ display: 'flex' }}
+							onClick={() =>
+								handleChangeStatus({ orderId: row._id, currentStatus: row.currentStatus, data })}
+						>
+							<Tag style={{ cursor: 'pointer', borderRadius: '5px' }}>
+								<PutAction />
+							</Tag>
+						</div>
+						<div style={{ display: 'flex' }} onClick={() => handleOrderCancel(row._id)}>
+							<Tag style={{ cursor: 'pointer', borderRadius: '5px' }}>
+								<DeleteAction />
+							</Tag>
+						</div>
+					</React.Fragment>
 				);
 			},
 		},
 	]);
+
+	const handleChangeStatus = async input => {
+		const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
+		const message = await orderApi.get.changeCurrentStatus(input);
+		console.log(message);
+		const newOrders = orders.filter(o => o._id !== input.orderId);
+		console.log(newOrders);
+		setData(newOrders);
+	};
 
 	const handleOrderCancel = async id => {
 		await orderApi.put.destroyOrder(id);

@@ -5,7 +5,7 @@ import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 
 const OrderTrackingComponent = () => {
-	const [ currentTab, setCurrentTab ] = useState(0);
+	const [ currentTab, setCurrentTab ] = useState('confirming');
 
 	const handleChangeTab = e => {
 		setCurrentTab(e);
@@ -14,11 +14,6 @@ const OrderTrackingComponent = () => {
 	return (
 		<div className='card-container'>
 			<Tabs type='card' size='large' tabBarGutter={100} onChange={handleChangeTab}>
-				<TabPane tab='Tất Cả' key='all'>
-					<p>Tất Cả Đơn Hàng</p>
-					<p>Tất Cả Đơn Hàng</p>
-					<p>Tất Cả Đơn Hàng</p>
-				</TabPane>
 				<TabPane tab='Chờ Xác Nhận' key='confirming'>
 					{currentTab === 'confirming' && <OrderByStatus currentStatus={currentTab} />}
 				</TabPane>
