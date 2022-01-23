@@ -23,13 +23,13 @@
 			&-input-group {
 				display: grid;
 				grid-template-columns: 1fr;
-				grid-template-rows: 2fr 1fr 1fr;
+				grid-template-rows: 3fr 3fr 1fr;
 				row-gap: 40px;
 
 				.grid__item {
 					&:nth-child(1) {
 						display: grid;
-						grid-template-columns: 1fr 1fr;
+						grid-template-columns: 1fr;
 						grid-template-rows: 1fr 1fr;
 						column-gap: 50px;
 
@@ -591,14 +591,14 @@
 					.grid__item {
 						&:nth-child(1) {
 							display: grid;
-							grid-template-columns: 1fr 1fr;
+							grid-template-columns: 1fr;
 							grid-template-rows: 1fr 1fr;
 							column-gap: 15px;
 						}
 
 						&:nth-child(2) {
 							display: grid;
-							grid-template-rows: 1fr 70px;
+							grid-template-rows: 1fr;
 							grid-template-columns: 1fr;
 
 							.edit-profile__form-antd-verify-email {
