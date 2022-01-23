@@ -4,8 +4,10 @@ import ContainerPage from 'components/shared/containerPage/ContainerPage';
 import EditProduct from 'components/features/products/editProduct/editProduct';
 
 import productApi from 'apis/product';
+import { useParams } from 'react-router-dom';
 
 const EditProductPage = () => {
+	const { productid } = useParams();
 	const [ product, setProduct ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(true);
 
@@ -15,7 +17,8 @@ const EditProductPage = () => {
 			setProduct(productsData[0]);
 		};
 
-		// await getProduct('61d7e6f52a36950cf2312c57');
+		//await getProduct('61d7e6f52a36950cf2312c57');
+		console.log(productid);
 
 		const tempProduct = {
 			name        : 'Thịt ba chỉ heo',

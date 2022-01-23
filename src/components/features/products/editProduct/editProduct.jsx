@@ -43,9 +43,9 @@ const EditProduct = props => {
 		};
 
 		console.log(dataForm);
-		// productApi.put.editProduct(dataForm.Product).then(res => {
-		// 	console.log(res);
-		// });
+		productApi.put.editProduct(dataForm.Product).then(res => {
+		console.log(res);
+		});
 	};
 
   const handleDeleteProduct = () => {

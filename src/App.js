@@ -28,6 +28,7 @@ import StoreList from 'pages/store/storeList/storeList';
 import AddProductPage from 'pages/products/addProduct';
 import ProductsByStorePage from 'pages/products/productsByStore';
 import EditProductPage from 'pages/products/editProduct';
+import OrderDetailPage from 'pages/orderDetail';
 
 function App () {
 	return (
@@ -43,6 +44,7 @@ function App () {
 				<Route path='/not-found' element={<NotFound />} />
 				<Route path='/order-management' element={<OrderManagement />} />
 				<Route path='/order-tracking' element={<OrderTracking />} />
+				<Route path='/orders/:orderId' element={<OrderDetailPage />} />
 				<Route path='/statistical/*' element={<StatisticalPage />} />
 				<Route path='/' element={<HomePage />} />
 				<Route path='/products' element={<ProductsPage />} />
