@@ -11,9 +11,17 @@ class Get {
 		return dotNetApi.get(`/order/FilterByStatusAndUserId/${userId}/${status}`);
 	};
 
+	changeCurrentStatus = ({ orderId, currentStatus }) => {
+		return dotNetApi.get(`/order/changeStatus/${orderId}/${currentStatus}`);
+	};
+
 	orderByShipper = shipperId => {
 		let id = shipperId ? shipperId : '61e6c63996db5613e2addf31';
 		return rootApi.get('/orders/shipper/' + id);
+	};
+
+	getById = ({ storeId }) => {
+		return dotNetApi.get(`/order/getById/${storeId}`);
 	};
 }
 
