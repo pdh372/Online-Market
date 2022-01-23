@@ -14,6 +14,10 @@ class Get {
 		return await axiosJava.get('/products/search/' + key);
 	}
 
+	getProductByStore = async (id) => {
+		return await axiosJava.get('/products?store=' + id);
+	}
+
 }
 
 export default new Get();

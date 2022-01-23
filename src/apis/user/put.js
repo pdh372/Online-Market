@@ -2,6 +2,14 @@ import axiosDotNet from '../rootDotNet';
 import axiosJava from '../rootJava';
 
 class Put {
+	user = (data) => {
+		return axiosDotNet.put('/user/put/' + data.User.ObjectId, data, {
+			headers : {
+				'x-auth-token' : 'token',
+			},
+		});
+	};
+
 	email = ({ userData, token }) => {
 		return axiosDotNet.put('/users/email', userData, {
 			headers : {

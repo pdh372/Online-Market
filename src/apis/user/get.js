@@ -1,10 +1,13 @@
 import axiosDotNet from '../rootDotNet';
-import axiosJava from '../rootJava'
-
+import axiosJava from '../rootJava';
 class Get {
 	userStatus = async (role, status) => {
 		return axiosJava.get('/user/'+role+'/statusregister/'+status);
 	};
+
+	userById = async (userId) => {
+		return axiosDotNet.get('/user/get/' + userId)
+	}
 
 	shipperPending = data => {
 		return axiosJava.get('/users/shipperpending', data);

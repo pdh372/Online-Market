@@ -13,6 +13,15 @@ class HomePage extends React.Component {
 							<Link to='products'>products</Link>
 						</ul>
 						<ul>
+							<Link to='products/by-store'>products by store</Link>
+						</ul>
+						<ul>
+							<Link to='products/add'>add product</Link>
+						</ul>
+						<ul>
+							<Link to='products/61eac75c184abb08cdce2a42/edit'>edit product</Link>
+						</ul>
+						<ul>
 							<Link to='admin/approveprovider'>admin/approveprovider</Link>
 						</ul>
 						<ul>
@@ -41,6 +50,12 @@ class HomePage extends React.Component {
 						</ul>
 						<ul>
 							<Link to='cart'>cart</Link>
+						</ul>
+						<ul>
+							<Link to='profile'>profile</Link>
+						</ul>
+						<ul>
+							<Link to='stores'>stores list</Link>
 						</ul>
 					</li>
 				</div>
