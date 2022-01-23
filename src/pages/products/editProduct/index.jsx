@@ -7,7 +7,7 @@ import productApi from 'apis/product';
 import { useParams } from 'react-router-dom';
 
 const EditProductPage = () => {
-	const { productid } = useParams();
+	const { productId } = useParams();
 	const [ product, setProduct ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(true);
 
@@ -18,7 +18,7 @@ const EditProductPage = () => {
 		};
 
 		//await getProduct('61d7e6f52a36950cf2312c57');
-		console.log(productid);
+		console.log(productId);
 
 		const tempProduct = {
 			name        : 'Thịt ba chỉ heo',

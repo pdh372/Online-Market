@@ -28,6 +28,9 @@ class HomePage extends React.Component {
 							<Link to='admin/approveshipper'>admin/approveshipper</Link>
 						</ul>
 						<ul>
+							<Link to='/orders/61ebbec7a75a903f85b3869f'>order detail</Link>
+						</ul>
+						<ul>
 							<Link to='cancel-order'>cancel-order</Link>
 						</ul>
 						<ul>

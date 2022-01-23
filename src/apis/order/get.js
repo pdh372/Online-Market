@@ -15,6 +15,11 @@ class Get {
 		let id = shipperId ? shipperId : '61e6c63996db5613e2addf31';
 		return rootApi.get('/orders/shipper/' + id);
 	};
+
+	orderById = orderId => {
+		let id = orderId ? orderId : '61e6c63996db5613e2addf31';
+		return rootApi.get('/orders/' + id);
+	};
 }
 
 export default new Get();
