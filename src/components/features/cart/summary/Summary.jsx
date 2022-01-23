@@ -10,19 +10,13 @@ const Summary = ({ subTotal }) => {
 
 			<div className='summary'>
 				<ul>
-					{/* <li>
-						Tổng giá trị sản phẩm chưa thuế <span>{formatCurrency(subTotal)}</span>
-					</li> */}
-					{/* <li>
-						Thuế <span>{formatCurrency(tax)}</span>
-					</li> */}
 					<li className='total'>
 						Tổng thiệt hại <span>{formatCurrency(total)}</span>
 					</li>
 				</ul>
 			</div>
 
-			<div className='checkout'>
+			<div className='checkout' style={{ paddingBottom: '100px' }}>
 				<button type='button'>Thanh Toán</button>
 			</div>
 		</section>

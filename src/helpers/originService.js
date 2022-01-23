@@ -1,8 +1,10 @@
-export function getOrigin() {
-	let originCountries = ['Trung Quốc', 'Việt Nam', 'Thái Lan'];
+export function getOrigin () {
+	let originCountries = [ 'Trung Quốc', 'Việt Nam', 'Thái Lan' ];
 	return originCountries[Math.floor(Math.random() * originCountries.length)];
 }
 
-export default {
+const out = {
 	getOrigin,
 };
+
+export default out;
