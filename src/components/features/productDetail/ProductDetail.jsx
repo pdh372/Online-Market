@@ -9,8 +9,8 @@ import orderApi from 'apis/order';
 import originService from 'helpers/originService';
 
 const ProductDetail = () => {
-	const [ thisProduct, setThisProducts ] = useState(null);
-	const [ quantity, setQuantity ] = useState(0);
+	const [thisProduct, setThisProducts] = useState(null);
+	const [quantity, setQuantity] = useState(0);
 
 	const params = useParams();
 
@@ -24,7 +24,7 @@ const ProductDetail = () => {
 			};
 			getData();
 		},
-		[ params.productId ],
+		[params.productId],
 	);
 
 	const onFinish = values => {
@@ -35,12 +35,12 @@ const ProductDetail = () => {
 		const cart = localStorage.getItem('cart');
 		console.log(thisProduct.product._id);
 		const data = {
-			_id         : thisProduct.product._id,
-			image       : thisProduct.product.image,
-			name        : thisProduct.product.name,
-			description : thisProduct.product.description,
-			price       : thisProduct.product.price,
-			quantity    : quantity === 0 ? 1 : quantity,
+			_id: thisProduct.product._id,
+			image: thisProduct.product.image,
+			name: thisProduct.product.name,
+			description: thisProduct.product.description,
+			price: thisProduct.product.price,
+			quantity: quantity === 0 ? 1 : quantity,
 		};
 
 		if (cart === null) {
@@ -59,17 +59,22 @@ const ProductDetail = () => {
 
 	const handleSubmit = async () => {
 		let order = {
-			products : [
+			products: [
 				{
-					productId : thisProduct.product._id,
+					productId: thisProduct.product._id,
 					quantity,
-					unitPrice : thisProduct.product.price,
+					unitPrice: thisProduct.product.price,
 				},
 			],
-			provider : thisProduct.product.store,
+			provider: thisProduct.product.store,
 		};
 		try {
-			await orderApi.post(order);
+			await orderApi.post(order).then(res => {
+				console.log(res);
+				orderApi.put.commissionOrder(res._id).then(res => {
+					console.log(res);
+				});
+			});
 			navigate('/');
 		} catch (e) {
 			window.alert(e);
