@@ -20,6 +20,10 @@ class Get {
 	shipper = async(userId) => {
 		return axiosJava.get('/shipper/'+userId);
 	}
+
+	store = async(storeId) => {
+		return axiosDotNet.get('/store/provider/'+storeId);
+	}
 }
 
 export default new Get();
