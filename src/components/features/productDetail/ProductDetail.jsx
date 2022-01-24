@@ -6,7 +6,6 @@ import './productDetail.scss';
 import { useEffect, useState } from 'react';
 import apiProduct from 'apis/product';
 import orderApi from 'apis/order';
-import originService from 'helpers/originService';
 
 const ProductDetail = () => {
 	const [thisProduct, setThisProducts] = useState(null);
@@ -17,7 +16,6 @@ const ProductDetail = () => {
 	useEffect(() => {
 		const getData = async () => {
 			const productData = await apiProduct.get.getProductById(params.productId);
-			productData.product.origin = originService.getOrigin();
 			console.log(productData);
 			setThisProducts(productData);
 		};

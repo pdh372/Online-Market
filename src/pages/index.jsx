@@ -4,7 +4,7 @@ import ContainerPage from '../components/shared/containerPage/ContainerPage';
 import './homePage.scss';
 
 class HomePage extends React.Component {
-	render () {
+	render() {
 		return (
 			<ContainerPage>
 				<div>
@@ -41,6 +41,9 @@ class HomePage extends React.Component {
 						</ul>
 						<ul>
 							<Link to='cart'>cart</Link>
+						</ul>
+						<ul>
+							<Link to='request-shipping'>request-shipping</Link>
 						</ul>
 					</li>
 				</div>
