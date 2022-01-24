@@ -181,26 +181,26 @@ const residences = [
 
                 ],
             },
-            {
-                value: 'Quận 6',
-                label: 'Quận 6',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
-            {
-                value: 'Quận 6',
-                label: 'Quận 6',
-                children: [
-                    {
-                        value: 'Phường',
-                        label: 'Phường',
-                    },
-                ],
-            },
+            // {
+            //     value: 'Quận 6',
+            //     label: 'Quận 6',
+            //     children: [
+            //         {
+            //             value: 'Phường',
+            //             label: 'Phường',
+            //         },
+            //     ],
+            // },
+            // {
+            //     value: 'Quận 6',
+            //     label: 'Quận 6',
+            //     children: [
+            //         {
+            //             value: 'Phường',
+            //             label: 'Phường',
+            //         },
+            //     ],
+            // },
         ],
     },
 ];

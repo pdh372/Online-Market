@@ -11,6 +11,8 @@ import OrderManagement from './pages/order-management';
 import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
 import ProfileStore from './pages/store/index';
+import UserProfile from 'pages/profile';
+import EditUserProfile from 'pages/profile/editProfile';
 import HomePage from './pages/index';
 import ProductsPage from './pages/products';
 import SearchResult from './pages/search-result';
@@ -23,6 +25,11 @@ import RequestShipping from 'pages/request-shipping';
 // scss
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import './scss/_index.scss';
+import StoreList from 'pages/store/storeList/storeList';
+import AddProductPage from 'pages/products/addProduct';
+import ProductsByStorePage from 'pages/products/productsByStore';
+import EditProductPage from 'pages/products/editProduct';
+import OrderDetailPage from 'pages/orderDetail';
 
 function App() {
 	return (
@@ -45,15 +52,22 @@ function App() {
 				<Route path='/order-management' element={<OrderManagement />} />
 				<Route path='/order-tracking' element={<OrderTracking />} />
 				<Route path='/request-shipping' element={<RequestShipping />} />
+				<Route path='/orders/:orderId' element={<OrderDetailPage />} />
 				<Route path='/statistical/*' element={<StatisticalPage />} />
 				<Route path='/' element={<HomePage />} />
 				<Route path='/products' element={<ProductsPage />} />
+				<Route path='/products/by-store' element={<ProductsByStorePage />} />
+				<Route path='/products/add' element={<AddProductPage />} />
 				<Route path='/products/:productId' element={<ProductDetail />} />
+				<Route path='/products/:productId/edit' element={<EditProductPage />} />
 				<Route path='/products/search/:keyWord' element={<SearchResult />} />
 				{/* <Route path='/products/search' element={<ProductsPage />} />
 				<Route path='/search/:keyWord' element={<SearchResult />} /> */}
 				<Route path='/store/:name' element={<ProfileStore />} />
 				<Route path='/cart' element={<CartPage />} />
+				<Route path='/profile' element={ <UserProfile /> } />
+				<Route path='/profile/edit' element={ <EditUserProfile /> } />
+				<Route path='/stores' element={ <StoreList /> } />
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}

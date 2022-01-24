@@ -16,14 +16,37 @@ const ProductDetail = () => {
 	useEffect(() => {
 		const getData = async () => {
 			const productData = await apiProduct.get.getProductById(params.productId);
-			console.log(productData);
 			setThisProducts(productData);
 		};
 		getData();
 	}, [params.productId]);
 
-	const onFinish = (values) => {
+	const onFinish = values => {
 		console.log(values);
+	};
+
+	const addToCart = () => {
+		const cart = localStorage.getItem('cart');
+		console.log(thisProduct.product._id);
+		const data = {
+			_id: thisProduct.product._id,
+			image: thisProduct.product.image,
+			name: thisProduct.product.name,
+			description: thisProduct.product.description,
+			price: thisProduct.product.price,
+			quantity: quantity === 0 ? 1 : quantity,
+		};
+
+		if (cart === null) {
+			const products = [];
+			products.push(data);
+			localStorage.setItem('cart', JSON.stringify(products));
+		}
+		else {
+			const products = JSON.parse(cart);
+			products.push(data);
+			localStorage.setItem('cart', JSON.stringify(products));
+		}
 	};
 
 	const navigate = useNavigate();
@@ -40,14 +63,19 @@ const ProductDetail = () => {
 			provider: thisProduct.product.store,
 		};
 		try {
-			await orderApi.post(order);
+			await orderApi.post(order).then(res => {
+				console.log(res);
+				orderApi.put.commissionOrder(res._id).then(res => {
+					console.log(res);
+				});
+			});
 			navigate('/');
 		} catch (e) {
 			window.alert(e);
 		}
 	};
 
-	const handleChange = (newQuantity) => {
+	const handleChange = newQuantity => {
 		setQuantity(newQuantity);
 	};
 	return (
@@ -74,12 +102,20 @@ const ProductDetail = () => {
 									min={0}
 									defaultValue={0}
 									value={quantity}
-									onChange={(value) => handleChange(value)}
+									onChange={value => handleChange(value)}
 								/>
 							</Form.Item>
 							<Form.Item>
 								<Button type='primary' htmlType='submit' onClick={handleSubmit}>
 									Mua luôn
+								</Button>
+								<Button
+									type='primary'
+									htmlType='submit'
+									onClick={addToCart}
+									style={{ marginLeft: '10px' }}
+								>
+									Thêm Vô Giỏ Hàng
 								</Button>
 							</Form.Item>
 						</h1>

@@ -13,10 +13,24 @@ class HomePage extends React.Component {
 							<Link to='products'>products</Link>
 						</ul>
 						<ul>
+							<Link to='products/by-store'>products by store</Link>
+						</ul>
+						<ul>
+							<Link to='products/add'>add product</Link>
+						</ul>
+						<ul>
+							<Link to='products/61eac75c184abb08cdce2a42/edit'>
+								edit product
+							</Link>
+						</ul>
+						<ul>
 							<Link to='admin/approveprovider'>admin/approveprovider</Link>
 						</ul>
 						<ul>
 							<Link to='admin/approveshipper'>admin/approveshipper</Link>
+						</ul>
+						<ul>
+							<Link to='/orders/61ebbec7a75a903f85b3869f'>order detail</Link>
 						</ul>
 						<ul>
 							<Link to='cancel-order'>cancel-order</Link>
@@ -44,6 +58,12 @@ class HomePage extends React.Component {
 						</ul>
 						<ul>
 							<Link to='request-shipping'>request-shipping</Link>
+						</ul>
+						<ul>
+							<Link to='profile'>profile</Link>
+						</ul>
+						<ul>
+							<Link to='stores'>stores list</Link>
 						</ul>
 					</li>
 				</div>

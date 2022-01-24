@@ -1,73 +1,27 @@
-import React from 'react';
-// table
-import Table from 'components/elements/table/index';
-import DeleteAction from './action/delete';
-import PutAction from './action/put';
-import data from './fakedata';
-import formatDateMongoose from 'helpers/formatDateMongoose';
-import formatCurrency from 'helpers/formatCurrency';
+import React, { useState } from 'react';
+import OrderByStatus from './orderByStatus/OrderByStatus';
+import { Tabs } from 'antd';
+const { TabPane } = Tabs;
 
-const columns = [
-	{
-		name     : 'Name',
-		selector : row => row.customer,
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'orderDate',
-		selector : row => formatDateMongoose(row.orderDate),
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'deliveryDate',
-		selector : row => formatDateMongoose(row.deliveryDate),
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'total',
-		selector : row => formatCurrency(row.total),
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'shippingfee',
-		selector : row => formatCurrency(row.shippingfee),
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'status',
-		selector : row => row.status,
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'upDatedtime',
-		selector : row => formatDateMongoose(row.upDatedtime),
-		sortable : true,
-		center   : true,
-	},
-	{
-		name     : 'action',
-		selector : row => row.customer,
-		sortable : true,
-		center   : true,
-		cell     : row => {
-			return (
-				<div style={{ display: 'flex' }}>
-					<PutAction />
-					<DeleteAction />
-				</div>
-			);
-		},
-	},
-];
+const OrderManagement = () => {
+	const [ currentTab, setCurrentTab ] = useState('confirming');
 
-const OrderManagementComponent = () => {
-	return <Table columns={columns} data={data} />;
+	const handleChangeTab = e => {
+		setCurrentTab(e);
+	};
+
+	return (
+		<div className='card-container'>
+			<Tabs type='card' size='large' tabBarGutter={100} onChange={handleChangeTab}>
+				<TabPane tab='Chờ Xác Nhận' key='confirming'>
+					{currentTab === 'confirming' && <OrderByStatus currentStatus={currentTab} />}
+				</TabPane>
+				<TabPane tab='Đang Chuẩn bị' key='preparing'>
+					{currentTab === 'preparing' && <OrderByStatus currentStatus={currentTab} />}
+				</TabPane>
+			</Tabs>
+		</div>
+	);
 };
 
-export default OrderManagementComponent;
+export default OrderManagement;
