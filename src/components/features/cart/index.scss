@@ -64,7 +64,7 @@
 		outline: none;
 	}
 
-	.container {
+	.container-huy {
 		width: 90%;
 		margin: 0 auto;
 		overflow: auto;
@@ -86,17 +86,17 @@
 		width: 100%;
 	}
 
-	.col,
+	.col-huy,
 	.quantity,
 	.remove {
 		float: left;
 	}
-	
-	.col.left {
+
+	.col-huy.left {
 		width: 70%;
 	}
 
-	.col.right {
+	.col-huy.right {
 		width: 30%;
 		position: absolute;
 		right: 0;
@@ -268,7 +268,7 @@
 			font-size: 14px;
 		}
 
-		.container {
+		.container-huy {
 			width: 75%;
 			max-width: 960px;
 		}

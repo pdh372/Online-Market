@@ -62,7 +62,7 @@ const Cart = () => {
 						onRemoveProduct={onRemoveProduct}
 					/>
 
-					<Summary subTotal={subTotal} />
+					<Summary subTotal={subTotal} products={products} setProducts={setProducts} />
 				</div>
 			) : (
 				<div className='empty-product'>

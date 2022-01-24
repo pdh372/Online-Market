@@ -2,10 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import ContainerPage from '../components/shared/containerPage/ContainerPage';
-import './homePage.scss';
 
 class HomePage extends React.Component {
-	render() {
+	render () {
 		return (
 			<ContainerPage>
 				<Row gutter={16}>
@@ -21,9 +20,7 @@ class HomePage extends React.Component {
 								<Link to='products/add'>add product</Link>
 							</ul>
 							<ul>
-								<Link to='products/61eac75c184abb08cdce2a42/edit'>
-									edit product
-								</Link>
+								<Link to='products/61eac75c184abb08cdce2a42/edit'>edit product</Link>
 							</ul>
 							<ul>
 								<Link to='admin/approveprovider'>admin/approveprovider</Link>
@@ -51,6 +48,9 @@ class HomePage extends React.Component {
 							</ul>
 							<ul>
 								<Link to='order-management'>order-management</Link>
+							</ul>
+							<ul>
+								<Link to='wait-shipper-to-shipping-and-paid'>waitShipperToShippingAndPaid</Link>
 							</ul>
 						</li>
 					</Col>

@@ -30,22 +30,17 @@ import AddProductPage from 'pages/products/addProduct';
 import ProductsByStorePage from 'pages/products/productsByStore';
 import EditProductPage from 'pages/products/editProduct';
 import OrderDetailPage from 'pages/orderDetail';
+import WaitShipperToShippingAndPaid from 'pages/waitShipperToShippingAndPaid';
 
-function App() {
+function App () {
 	return (
 		<div className='app'>
 			{/* Start Router */}
 			<Routes>
 				<Route path='/auth/:name' element={<AuthPage />} />
 				<Route path='/admin/:name' element={<AdminPage />} />
-				<Route
-					path='/admin/approveshipper/:shipperId'
-					element={<ApproveShipperDetail />}
-				/>
-				<Route
-					path='/admin/approveprovider/:storeId'
-					element={<ApproveProviderDetail />}
-				/>
+				<Route path='/admin/approveshipper/:shipperId' element={<ApproveShipperDetail />} />
+				<Route path='/admin/approveprovider/:storeId' element={<ApproveProviderDetail />} />
 				<Route path='/cancel-order' element={<CancelOrder />} />
 				<Route path='/delivery-history' element={<DeliveryHistory />} />
 				<Route path='/not-found' element={<NotFound />} />
@@ -65,9 +60,10 @@ function App() {
 				<Route path='/search/:keyWord' element={<SearchResult />} /> */}
 				<Route path='/store/:name' element={<ProfileStore />} />
 				<Route path='/cart' element={<CartPage />} />
-				<Route path='/profile' element={ <UserProfile /> } />
-				<Route path='/profile/edit' element={ <EditUserProfile /> } />
-				<Route path='/stores' element={ <StoreList /> } />
+				<Route path='/profile' element={<UserProfile />} />
+				<Route path='/profile/edit' element={<EditUserProfile />} />
+				<Route path='/stores' element={<StoreList />} />
+				<Route path='/wait-shipper-to-shipping-and-paid' element={<WaitShipperToShippingAndPaid />} />
 				<Route path='*' element={<Navigate to='/not-found' />} />
 			</Routes>
 			{/* End Router */}

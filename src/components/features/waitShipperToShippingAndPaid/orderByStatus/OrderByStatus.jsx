@@ -5,7 +5,6 @@ import formatCurrency from 'helpers/formatCurrency';
 import Table from 'components/elements/table/index';
 import orderApi from 'apis/order';
 import { Tag } from 'antd';
-import DeleteAction from './action/delete';
 import PutAction from './action/put';
 
 const CancelOrder = ({ currentStatus, canDelete }) => {
@@ -65,11 +64,11 @@ const CancelOrder = ({ currentStatus, canDelete }) => {
 								<PutAction />
 							</Tag>
 						</div>
-						<div style={{ display: 'flex' }} onClick={() => handleOrderCancel(row._id)}>
+						{/* <div style={{ display: 'flex' }} onClick={() => handleOrderCancel(row._id)}>
 							<Tag style={{ cursor: 'pointer', borderRadius: '5px' }}>
 								<DeleteAction />
 							</Tag>
-						</div>
+						</div> */}
 					</React.Fragment>
 				);
 			},
@@ -77,18 +76,13 @@ const CancelOrder = ({ currentStatus, canDelete }) => {
 	]);
 
 	const handleChangeStatus = async input => {
+		console.log(input);
 		const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
 		const message = await orderApi.put.changeCurrentStatus(input);
 		console.log(message);
 		const newOrders = orders.filter(o => o._id !== input.orderId);
 		console.log(newOrders);
 		setData(newOrders);
-	};
-
-	const handleOrderCancel = async id => {
-		await orderApi.put.destroyOrder(id);
-		const orders = await orderApi.get.orderByStatusAndUserId(currentStatus, '61b46287def70a3102757cf4');
-		setData(orders);
 	};
 
 	useEffect(
@@ -107,9 +101,9 @@ const CancelOrder = ({ currentStatus, canDelete }) => {
 		[ currentStatus ],
 	);
 
-	if (canDelete) {
-		columns.current.pop();
-	}
+	// if (canDelete) {
+	// 	columns.current.pop();
+	// }
 
 	return <Table columns={columns.current} data={data} />;
 };
