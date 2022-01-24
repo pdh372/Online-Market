@@ -1,5 +1,6 @@
 //import axiosDotNet from '../rootDotNet';
-import axiosJava from '../rootJava'
+import originService from 'helpers/originService';
+import axiosJava from '../rootJava';
 
 class Get {
 	getProducts = async () => {
@@ -7,13 +8,14 @@ class Get {
 	};
 
 	getProductById = async (id) => {
-		return await axiosJava.get('/products/' + id);
-	}
+		let data = await axiosJava.get('/products/' + id);
+		data.product.origin = originService.getOrigin();
+		return data;
+	};
 
 	getProductByKeyWord = async (key) => {
 		return await axiosJava.get('/products/search/' + key);
-	}
-
+	};
 }
 
 export default new Get();
