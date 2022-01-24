@@ -48,7 +48,7 @@ const OrderDetail = props => {
 		<React.Fragment>
 			<div className='container'>
 				<h1>Thông tin đơn hàng</h1>
-				{renderInfo()}
+				{detail && renderInfo()}
 				<h2>Danh sách sản phẩm</h2>
 				{products.map((item, index) => (
 					<React.Fragment key={index}>

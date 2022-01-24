@@ -31,7 +31,7 @@ const UserProfile = () => {
 		return (
 			<React.Fragment>
 				<ContainerPage>
-					<Profile info={user} />
+					{user && <Profile info={user} />}
 				</ContainerPage>
 			</React.Fragment>
 		);

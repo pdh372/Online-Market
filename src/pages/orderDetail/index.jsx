@@ -8,7 +8,7 @@ import orderApi from 'apis/order';
 
 const OrderDetailPage = () => {
 	const { orderId } = useParams();
-	const [ order, setOrder ] = useState({});
+	const [ order, setOrder ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(true);
 
 	useEffect(
@@ -37,7 +37,7 @@ const OrderDetailPage = () => {
 		return (
 			<React.Fragment>
 				<ContainerPage>
-					<OrderDetail detail={order} />
+					{order && <OrderDetail detail={order} />}
 				</ContainerPage>
 			</React.Fragment>
 		);

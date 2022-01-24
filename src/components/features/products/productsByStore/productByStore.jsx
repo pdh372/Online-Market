@@ -25,7 +25,7 @@ const ProductsByStore = props => {
 
 	return (
 		<React.Fragment>
-			<div className='list'>{renderProduct()}</div>
+			<div className='list'>{products && renderProduct()}</div>
 			<div className='list'>
 				<Pagination defaultCurrent={1} total={50} />
 			</div>
