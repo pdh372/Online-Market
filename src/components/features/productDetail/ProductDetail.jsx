@@ -1,27 +1,32 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 // import productsData from "../products/productsData"
-import { Form, InputNumber, Button } from 'antd';
+import { Form, InputNumber, Button, Comment, List, Col, Row } from 'antd';
 import './productDetail.scss';
 import { useEffect, useState } from 'react';
 import apiProduct from 'apis/product';
 import orderApi from 'apis/order';
+import { Rate } from 'antd';
+import { getReviews } from 'helpers/reviewService';
 
 const ProductDetail = () => {
 	const [thisProduct, setThisProducts] = useState(null);
 	const [quantity, setQuantity] = useState(0);
-
+	const [reviews, setReviews] = useState([]);
 	const params = useParams();
 
 	useEffect(() => {
 		const getData = async () => {
 			const productData = await apiProduct.get.getProductById(params.productId);
+			const newReviews = getReviews();
+
+			setReviews(newReviews);
 			setThisProducts(productData);
 		};
 		getData();
 	}, [params.productId]);
 
-	const onFinish = values => {
+	const onFinish = (values) => {
 		console.log(values);
 	};
 
@@ -41,8 +46,7 @@ const ProductDetail = () => {
 			const products = [];
 			products.push(data);
 			localStorage.setItem('cart', JSON.stringify(products));
-		}
-		else {
+		} else {
 			const products = JSON.parse(cart);
 			products.push(data);
 			localStorage.setItem('cart', JSON.stringify(products));
@@ -63,9 +67,9 @@ const ProductDetail = () => {
 			provider: thisProduct.product.store,
 		};
 		try {
-			await orderApi.post(order).then(res => {
+			await orderApi.post(order).then((res) => {
 				console.log(res);
-				orderApi.put.commissionOrder(res._id).then(res => {
+				orderApi.put.commissionOrder(res._id).then((res) => {
 					console.log(res);
 				});
 			});
@@ -75,52 +79,84 @@ const ProductDetail = () => {
 		}
 	};
 
-	const handleChange = newQuantity => {
+	const handleChange = (newQuantity) => {
 		setQuantity(newQuantity);
 	};
 	return (
 		thisProduct && (
-			<div className='product'>
-				<div className='avt'>
-					<img width='350px' src={thisProduct.product.image} alt='' />
-				</div>
-				<div className='infom'>
-					<h1>{thisProduct.product.name}</h1>
-					<h2 className='price'>
-						{thisProduct.product.price.toLocaleString()} VNĐ/
-						{thisProduct.product.unit}
-					</h2>
-					<h4>Nguồn gốc xuất xứ: {thisProduct.product.origin}</h4>
-					<h4>{thisProduct.store.name}</h4>
-					<div className='des'>
-						<p>{thisProduct.product.description}</p>
+			<div>
+				<div className='product'>
+					<div className='avt'>
+						<img width='350px' src={thisProduct.product.image} alt='' />
 					</div>
-					<Form onFinish={onFinish}>
-						<h1>
-							<Form.Item label='Số lượng'>
-								<InputNumber
-									min={0}
-									defaultValue={0}
-									value={quantity}
-									onChange={value => handleChange(value)}
-								/>
-							</Form.Item>
-							<Form.Item>
-								<Button type='primary' htmlType='submit' onClick={handleSubmit}>
-									Mua luôn
-								</Button>
-								<Button
-									type='primary'
-									htmlType='submit'
-									onClick={addToCart}
-									style={{ marginLeft: '10px' }}
-								>
-									Thêm Vô Giỏ Hàng
-								</Button>
-							</Form.Item>
-						</h1>
-					</Form>
+					<div className='infom'>
+						<h1>{thisProduct.product.name}</h1>
+						<h2 className='price'>
+							{thisProduct.product.price.toLocaleString()} VNĐ/
+							{thisProduct.product.unit}
+						</h2>
+						<h4>Nguồn gốc xuất xứ: {thisProduct.product.origin}</h4>
+						<h4>{thisProduct.store.name}</h4>
+						<Rate
+							allowHalf
+							disabled
+							defaultValue={thisProduct.product.rating}
+						/>
+						<div className='des'>
+							<p>{thisProduct.product.description}</p>
+						</div>
+						<Form onFinish={onFinish}>
+							<h1>
+								<Form.Item label='Số lượng'>
+									<InputNumber
+										min={0}
+										defaultValue={0}
+										value={quantity}
+										onChange={(value) => handleChange(value)}
+									/>
+								</Form.Item>
+								<Form.Item>
+									<Button
+										type='primary'
+										htmlType='submit'
+										onClick={handleSubmit}
+									>
+										Mua luôn
+									</Button>
+									<Button
+										type='primary'
+										htmlType='submit'
+										onClick={addToCart}
+										style={{ marginLeft: '10px' }}
+									>
+										Thêm Vô Giỏ Hàng
+									</Button>
+								</Form.Item>
+							</h1>
+						</Form>
+					</div>
 				</div>
+
+				<Row>
+					<Col span={12} offset={5}>
+						<List
+							className='comment-list'
+							header={`${reviews.length} nhận xét`}
+							itemLayout='horizontal'
+							dataSource={reviews}
+							renderItem={(item) => (
+								<li>
+									<Comment
+										author={item.author}
+										avatar={item.avatar}
+										content={item.content}
+										datetime={item.datetime}
+									/>
+								</li>
+							)}
+						/>
+					</Col>
+				</Row>
 			</div>
 		)
 	);
