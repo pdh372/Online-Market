@@ -3,12 +3,12 @@ import formatCurrency from 'helpers/formatCurrency';
 
 const ProductList = ({ products, onChangeProductQuantity, onRemoveProduct }) => {
 	return (
-		<section className='container'>
+		<section className='container-huy'>
 			<ul className='products'>
 				{products.map((product, index) => {
 					return (
 						<li className='row' key={index}>
-							<div className='col left'>
+							<div className='col-huy left'>
 								<div className='thumbnail'>
 									<Link to='#'>
 										<img src={product.image} alt={product.name} />
@@ -23,7 +23,7 @@ const ProductList = ({ products, onChangeProductQuantity, onRemoveProduct }) => 
 								</div>
 							</div>
 
-							<div className='col right'>
+							<div className='col-huy right'>
 								<div className='quantity'>
 									<input
 										type='text'
