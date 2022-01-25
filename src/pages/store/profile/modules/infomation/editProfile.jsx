@@ -48,7 +48,7 @@ const EditProfile = () => {
 						layout='vertical'
 						style={{ marginBottom: '100px' }}
 					>
-						<Form.Item label={'Nguồn Gốc Sản Phẩm Của Sản Phẩm XXX'} name='productOrigin'>
+						<Form.Item label={'Nguồn Gốc Sản Phẩm Của Sản Phẩm' + p.name} name='productOrigin'>
 							<Input
 								placeholder='Nguồn Gốc Sản Phẩm'
 								type='file'
