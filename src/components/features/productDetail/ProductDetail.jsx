@@ -109,8 +109,8 @@ const ProductDetail = () => {
 							<h1>
 								<Form.Item label='Số lượng'>
 									<InputNumber
-										min={0}
-										defaultValue={0}
+										min={1}
+										defaultValue={1}
 										value={quantity}
 										onChange={(value) => handleChange(value)}
 									/>

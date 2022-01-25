@@ -4,74 +4,81 @@ import { Row, Col } from 'antd';
 import ContainerPage from '../components/shared/containerPage/ContainerPage';
 
 class HomePage extends React.Component {
-	render () {
+	render() {
 		return (
 			<ContainerPage>
 				<Row gutter={16}>
 					<Col className='gutter-row' span={6}>
-						<li>
-							<ul>
-								<Link to='products'>products</Link>
-							</ul>
-							<ul>
-								<Link to='products/by-store'>products by store</Link>
-							</ul>
-							<ul>
-								<Link to='products/add'>add product</Link>
-							</ul>
-							<ul>
-								<Link to='products/61eac75c184abb08cdce2a42/edit'>edit product</Link>
-							</ul>
-							<ul>
-								<Link to='admin/approveprovider'>admin/approveprovider</Link>
-							</ul>
-							<ul>
-								<Link to='admin/approveshipper'>admin/approveshipper</Link>
-							</ul>
-							<ul>
-								<Link to='/orders/61ebbec7a75a903f85b3869f'>order detail</Link>
-							</ul>
-							<ul>
-								<Link to='cancel-order'>cancel-order</Link>
-							</ul>
-							<ul>
-								<Link to='statistical'>statistical</Link>
-							</ul>
-							<ul>
-								<Link to='delivery-history'>delivery-history</Link>
-							</ul>
-							<ul>
-								<Link to='order-tracking'>order tracking</Link>
-							</ul>
-							<ul>
+						<ul>
+							<h1>Người dùng</h1>
+							<li>
 								<Link to='auth/login'>login</Link>
-							</ul>
-							<ul>
-								<Link to='order-management'>order-management</Link>
-							</ul>
-							<ul>
-								<Link to='wait-shipper-to-shipping-and-paid'>waitShipperToShippingAndPaid</Link>
-							</ul>
+							</li>
+							<li>
+								<Link to='admin/approveprovider'>admin/approveprovider</Link>
+							</li>
+							<li>
+								<Link to='admin/approveshipper'>admin/approveshipper</Link>
+							</li>
+						</ul>
+
+						<li>
+							<Link to='products/add'>add product</Link>
+						</li>
+						<li>
+							<Link to='products/61eacf1dc271d47dee60ab36/edit'>
+								edit product
+							</Link>
+						</li>
+						<li>
+							<Link to='products'>products</Link>
+						</li>
+						<li>
+							<Link to='cart'>cart</Link>
+						</li>
+						<li>
+							<Link to='products/by-store'>products by store</Link>
+						</li>
+						<li>
+							<Link to='order-tracking'>order tracking</Link>
+						</li>
+						<li>
+							<Link to='wait-shipper-to-shipping-and-paid'>
+								waitShipperToShippingAndPaid
+							</Link>
+						</li>
+						<li>
+							<Link to='order-management'>order-management</Link>
+						</li>
+						<li>
+							<Link to='request-shipping'>request-shipping</Link>
+						</li>
+						<li>
+							<Link to='/orders/61ebbec7a75a903f85b3869f'>order detail</Link>
+						</li>
+						<li>
+							<Link to='cancel-order'>cancel-order</Link>
+						</li>
+						<li>
+							<Link to='statistical'>statistical</Link>
+						</li>
+						<li>
+							<Link to='delivery-history'>delivery-history</Link>
 						</li>
 					</Col>
 					<Col className='gutter-row' span={6}>
-						<li>
-							<ul>
+						<ul>
+							<li>
 								<Link to='store/profile'>quan li ho so cua hang</Link>
-							</ul>
-							<ul>
-								<Link to='cart'>cart</Link>
-							</ul>
-							<ul>
-								<Link to='request-shipping'>request-shipping</Link>
-							</ul>
-							<ul>
+							</li>
+
+							<li>
 								<Link to='profile'>profile</Link>
-							</ul>
-							<ul>
+							</li>
+							<li>
 								<Link to='stores'>stores list</Link>
-							</ul>
-						</li>
+							</li>
+						</ul>
 					</Col>
 				</Row>
 			</ContainerPage>
