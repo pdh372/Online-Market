@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import storeApi from 'apis/store';
 import ContainerPage from 'components/shared/containerPage/ContainerPage';
+import { Typography } from 'antd';
+
+const { Link } = Typography;
 
 const StoreList = () => {
-	const [ isLoading, setIsLoading ] = useState(true);
-	const [ stores, setStores ] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
+	const [stores, setStores] = useState([]);
 
 	useEffect(() => {
 		const getData = async () => {
@@ -17,10 +20,13 @@ const StoreList = () => {
 	}, []);
 
 	const renderStores = () => {
-		const storeRows = stores.map(item => {
+		const storeRows = stores.map((item) => {
 			return (
 				<tr key={item._id}>
-					<td>{item.name}</td>
+					{/* <td>{item.name}</td> */}
+					<td>
+						<Link href={`/store-detail/${item._id}`}>{item.name}</Link>
+					</td>
 					<td>{item.type}</td>
 					<td>{item.address.streetNo}</td>
 					<td>
@@ -59,8 +65,7 @@ const StoreList = () => {
 				</ContainerPage>
 			</React.Fragment>
 		);
-	}
-	else {
+	} else {
 		return (
 			<React.Fragment>
 				<ContainerPage>

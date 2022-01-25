@@ -31,6 +31,7 @@ import ProductsByStorePage from 'pages/products/productsByStore';
 import EditProductPage from 'pages/products/editProduct';
 import OrderDetailPage from 'pages/orderDetail';
 import WaitShipperToShippingAndPaid from 'pages/waitShipperToShippingAndPaid';
+import StoreDetailPage from 'pages/store-detail';
 
 function App () {
 	return (
@@ -58,6 +59,7 @@ function App () {
 				<Route path='/products/search/:keyWord' element={<SearchResult />} />
 				{/* <Route path='/products/search' element={<ProductsPage />} />
 				<Route path='/search/:keyWord' element={<SearchResult />} /> */}
+				<Route path='/store-detail/:id' element={<StoreDetailPage />} />
 				<Route path='/store/:name' element={<ProfileStore />} />
 				<Route path='/cart' element={<CartPage />} />
 				<Route path='/profile' element={<UserProfile />} />
