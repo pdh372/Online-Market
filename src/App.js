@@ -11,7 +11,7 @@ import OrderManagement from './pages/order-management';
 import OrderTracking from './pages/order-tracking/index';
 import StatisticalPage from './pages/statistical';
 import ProfileStore from './pages/store/index';
-import UserProfile from 'pages/profile';
+import UserProfile from './pages/profile/index';
 import EditUserProfile from 'pages/profile/editProfile';
 import HomePage from './pages/index';
 import ProductsPage from './pages/products';

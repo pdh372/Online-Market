@@ -1,70 +1,10 @@
 import React from 'react';
+import residences from '../auth/address';
 import { Form, Input, Button, DatePicker, Cascader } from 'antd';
 import Put from '../../../apis/user/put';
 
 //const { Option } = Select;
-const residences = [
-  {
-      value: 'TP Hồ Chí Minh',
-      label: 'TP Hồ Chí Minh',
-      children: [
-          {
-              value: 'Quận 1',
-              label: 'Quận 1',
-              children: [
-                  {
-                      value: 'Phường Bến Nghé',
-                      label: 'Phường Bến Nghé',
-                  },
-                  {
-                      value: 'Phường Bến Thành',
-                      label: 'Phường Bến Thành',
-                  },
-              ],
-          },
-          {
-              value: 'Quận 2',
-              label: 'Quận 2',
-              children: [
-                  {
-                      value: 'Phường',
-                      label: 'Phường',
-                  },
-              ],
-          },
-          {
-              value: 'Quận 3',
-              label: 'Quận 3',
-              children: [
-                  {
-                      value: 'Phường',
-                      label: 'Phường',
-                  },
-              ],
-          },
-          {
-              value: 'Quận 4',
-              label: 'Quận 4',
-              children: [
-                  {
-                      value: 'Phường',
-                      label: 'Phường',
-                  },
-              ],
-          },
-          {
-              value: 'Quận 5',
-              label: 'Quận 5',
-              children: [
-                  {
-                      value: 'Phường',
-                      label: 'Phường',
-                  },
-              ],
-          },
-      ],
-  },
-];
+
 const layout = {
   labelCol: {
       span: 8,

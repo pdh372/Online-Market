@@ -14,7 +14,7 @@ const UserProfile = () => {
 			setUser(userData[0]);
 		};
 
-		getUser('61e6c302071c4a6bdb501b7a');
+		getUser('61e6c44c8468206c684f0363');
 		setIsLoading(false);
 	}, []);
 

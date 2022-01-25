@@ -29,7 +29,7 @@ const Profile = props => {
 						<div className='info'>{info.address.streetNo}</div>
 					</div>
 
-					<Link to='/profile/edit' className='ant-btn ant-btn-primary'>Chỉnh sửa</Link>
+					<Link to='/profile/edit/' className='ant-btn ant-btn-primary'>Chỉnh sửa</Link>
 				</div>
 			</React.Fragment>
 		);

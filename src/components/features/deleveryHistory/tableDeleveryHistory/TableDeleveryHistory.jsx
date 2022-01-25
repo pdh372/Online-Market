@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import DataTable from 'react-data-table-component';
 import orderApi from '../../../../apis/order/index';
 
@@ -8,6 +10,9 @@ const columns = [
 		selector : row => row._id,
 		sortable : true,
 		center   : true,
+		cell: row => {
+			return <Link to={'/orders/' + row._id} >Chi tiết</Link>
+		}
 	},
 	{
 		name     : 'Tình Trạng',
@@ -47,11 +52,8 @@ const TableDeleveryHistory = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const orders = await orderApi.get.orderByShipper();
-
-			console.log(orders);
-			console.log(orders.map(o => o.shippingfee));
-
-			setData(orders);
+			const ordersToShow = orders.filter(item => item.currentStatus === 'paid');
+			setData(ordersToShow);
 		};
 
 		fetchData();
